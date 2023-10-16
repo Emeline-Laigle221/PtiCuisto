@@ -1,22 +1,24 @@
-<section>
+<div>
     <img src="" alt="">
-    <div id="recette">
-        <h1>LES DERNIÈRES RECETTES</h1>
-        <div>
-            <img src="" alt="">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus, voluptate. Doloribus, dicta iste quam saepe nam et cum. Explicabo tenetur laborum, sint beatae aliquam incidunt impedit ratione quasi earum autem.</p>
-        </div>
-        <div>
-            <img src="" alt="">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus, voluptate. Doloribus, dicta iste quam saepe nam et cum. Explicabo tenetur laborum, sint beatae aliquam incidunt impedit ratione quasi earum autem.</p>
-        </div>
-        <div>
-            <img src="" alt="">
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus, voluptate. Doloribus, dicta iste quam saepe nam et cum. Explicabo tenetur laborum, sint beatae aliquam incidunt impedit ratione quasi earum autem.</p>
-        </div>
-    </div>
-    <div>
+    
+    <div id="Edito">
         <img src="img/Pticuisto.png" alt="Pticuisto">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel nulla quasi animi distinctio dolor doloremque aspernatur quisquam a aut consequatur! Perferendis natus ipsum reiciendis animi adipisci provident nesciunt eveniet ipsa.</p>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente mollitia id incidunt ratione neque laborum optio, eaque debitis. Atque eum ratione, dolores similique earum asperiores in necessitatibus rem illum cum.</p>
     </div>
-</section>
+    
+    <div>
+        <h1>LES DERNIÈRE RECETTES</h1>
+        <div>
+            <img src="" alt="">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto nemo minus magni nobis ex explicabo pariatur cum aperiam. Ratione eum quibusdam ab porro est accusamus sequi magnam perferendis, at similique?</p>
+        </div>
+        <div>
+            <img src="" alt="">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto nemo minus magni nobis ex explicabo pariatur cum aperiam. Ratione eum quibusdam ab porro est accusamus sequi magnam perferendis, at similique?</p>
+        </div>
+        <div>
+            <img src="" alt="">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto nemo minus magni nobis ex explicabo pariatur cum aperiam. Ratione eum quibusdam ab porro est accusamus sequi magnam perferendis, at similique?</p>
+        </div>
+    </div>
+</div>
