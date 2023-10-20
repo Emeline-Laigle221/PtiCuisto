@@ -23,7 +23,7 @@
         </nav>
     </header>
     <main>
-        <?php include 'template/Edito.php'; ?>
+        <?php include 'template/Filtre.php'; ?>
     </main>
     <footer>
         <div>

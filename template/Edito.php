@@ -1,5 +1,7 @@
 <div>
-    <img class="image_daccueil" src="img/accueil" alt="plat">
+    <div class="image_daccueil">
+        <img src="img/accueil" alt="plat">
+    </div>
     
     <div id="Edito">
         <img src="img/Pticuisto.png" alt="Pticuisto">
