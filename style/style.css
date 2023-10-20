@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    background-color: #7890cd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header>img{
+    margin: 5mm;
+    width: 242px;
+    height: 92px;
+}
+
+nav{
+    font-family: 'Pacifico', cursive;
+    display: flex;
+}
+
+nav>div{
+    margin: 20px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font-size: x-large;
+}
+
+.image_daccueil{
+    margin: auto;
+}

@@ -1,5 +1,5 @@
 <div>
-    <img src="" alt="">
+    <img class="image_daccueil" src="img/accueil" alt="plat">
     
     <div id="Edito">
         <img src="img/Pticuisto.png" alt="Pticuisto">
