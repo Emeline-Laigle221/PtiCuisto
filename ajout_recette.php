@@ -1,11 +1,4 @@
-<?php
 
-session_start();
-include("connexion.php");
-
-$_SESSION['pseudo'] = 'session_pseudo';
-
-?>
 
 <!DOCTYPE html>
 <html lang="fr">
