@@ -31,7 +31,94 @@ a{
     font-size: x-large;
 }
 
+/* Style Edito */
+
 .image_daccueil{
     width: 830px;
     margin: auto;
 }
+
+/* Style Filtres */
+
+.filtre-container{
+    display: flex;
+}
+
+.modal-btn{
+    padding: 10px 14px;
+    font-size: 24px;
+    margin: 50px auto;
+    display: block;
+    min-width: 150px;
+    cursor: pointer;
+    background-color: #2a3990;
+    font-family: "Pacifico";
+    color: white;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.4) 5px 5px 5px;
+}
+
+.modal-container{
+    display: none;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;    
+}
+
+.modal-container.active{
+    display: block; 
+}
+
+.overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #333333d3;
+}
+
+.modal{
+    width: 95%;
+    max-width: 500px;
+    min-width: 300px;
+    padding: 30px;
+    position: absolute;
+    border-radius: 10px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #2a3990;
+    font-family: "Pacifico";
+    color: white;
+    font-size: 24px;
+}
+
+.valider{
+    margin: 10px 0;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: #7890cd;
+    font-family: "Pacifico";
+    color: white;
+    font-size: 24px;
+}
+
+.close-modal{
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    background-color: #ff365e;
+    color: #fff;
+}
+
+.modal h1{
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* Style Recettes */
