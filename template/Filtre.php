@@ -42,7 +42,7 @@
                         <input type="checkbox" name="dessert" id="dessert">
                         <label for="dessert">Dessert</label>
                         <br>
-                        <input class="valider" type="submit" name="valider-categorie" id="valider-categorie">
+                        <input class="valider" value="Valider" type="submit" name="valider-categorie" id="valider-categorie">
                     </form>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                         <label for="titre">Titre de la recette : </label>
                         <input type="text" name="titre" id="titre">
                         <br>
-                        <input class="valider" type="submit" name="valider-titre" id="valider-titre">
+                        <input class="valider" value="Valider" type="submit" name="valider-titre" id="valider-titre">
                     </form>
                 </div>
             </div>
@@ -89,7 +89,7 @@
                         <input type="checkbox" name="poulet" id="poulet">
                         <label for="poulet">Poulet</label>
                         <br>
-                        <input class="valider" type="submit" name="valider-ingredients" id="valider-ingredients">
+                        <input class="valider" value="Valider" type="submit" name="valider-ingredients" id="valider-ingredients">
                     </form>
                 </div>
             </div>
