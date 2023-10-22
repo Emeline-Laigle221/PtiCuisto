@@ -1,7 +1,7 @@
 const categorieContainer = document.querySelector(".categorie-container");
 const titreContainer = document.querySelector(".titre-container");
 const ingredientContainer = document.querySelector(".ingredient-container");
-const categorieTriggers = document.querySelectorAll(".categrie");
+const categorieTriggers = document.querySelectorAll(".categorie");
 const titreTriggers = document.querySelectorAll(".titre");
 const ingredientTriggers = document.querySelectorAll(".ingredient");
 
