@@ -14,15 +14,8 @@
     <title>PtiCuisto</title>
 </head>
 <body>
-    <header>
-        <img src="../img/Logo.png" alt="Logo">
-        <nav>
-            <div><a href="../index.php">Accueil</a></div>
-            <div><a href="nosrecette.php">Nos Recettes</a></div>
-            <div><a href="Filtre.php">Filtres</a></div>
-            <div><a href="connexion.php">Connexion</a></div>
-        </nav>
-    </header>
+    <?php include "header.php"?>
+
     <main>
         <div class="filtre-container">
             <!-- Modale Catégories -->
@@ -98,5 +91,5 @@
 
         </div>
     </main>
-    <footer></footer>
+    <?php include "footer.php"?>
 </body>

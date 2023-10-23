@@ -13,30 +13,8 @@
     <title>PtiCuisto</title>
 </head>
 <body>
-    <!-- <header>
-        <img src="img/Logo.png" alt="Logo">
-        <nav>
-            <div><a href="index.php">Accueil</a></div>
-            <div><a href="">Nos Recettes</a></div>
-            <div><a href="template/Filtre.php">Filtres</a></div>
-            <div><a href="">Connexion</a></div>
-        </nav>
-    </header> -->
     
     <?php include 'template/Edito.php'; ?>
-    
-    <footer>
-        <div class="reseaux">
-            <a target="_blank_" href="https://www.facebook.com" >
-                <img src="img/facebook.jpg" alt="Facebook">
-            </a>
-            <a target="_blank_" href="https://X.com">
-                <img src="img/X.png" alt="X">
-            </a>
-            <a target="_blank_" href="https://fr.linkedin.com">
-                <img src="img/linkedin.png" alt="LinkedIn">
-            </a>
-        </div>
-    </footer>
+
 </body>
 </html>

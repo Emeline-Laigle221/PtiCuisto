@@ -15,15 +15,8 @@
 </head>
 
 <body>
-    <header>
-        <img src="../img/Logo.png" alt="Logo">
-        <nav>
-            <div><a href="../index.php">Accueil</a></div>
-            <div><a href="">Nos Recettes</a></div>
-            <div><a href="Filtre.php">Filtres</a></div>
-            <div><a href="connexion.php">Connexion</a></div>
-        </nav>
-    </header>
+    <?php include "header.php"?>
+
     <main>
         <div class="connexion">
             <div class="connect-p1"><h3>Connexion</h3></div>
@@ -40,11 +33,11 @@
                             placeholder="Password">
                     </div>
                     <div class="btns">
-                        <div>
+                        <div class="btn-container">
                             <button class="btn" type="submit">Se connecter</button>
                             <br>
                         </div>
-                        <div >
+                        <div>
                             <button class="btn" type="submit">
                                 <a href="page-inscription.php">S'inscrire</a>
                             </button>
@@ -54,19 +47,9 @@
             </div>
         </div>
     </main>
-    <footer>
-        <div class="reseaux">
-            <a target="_blank_" href="https://www.facebook.com" >
-                <img src="../img/facebook.jpg" alt="Facebook">
-            </a>
-            <a target="_blank_" href="https://X.com">
-                <img src="../img/X.png" alt="X">
-            </a>
-            <a target="_blank_" href="https://fr.linkedin.com">
-                <img src="../img/linkedin.png" alt="LinkedIn">
-            </a>
-        </div>
-    </footer>
+    
+    <?php include "footer.php"?>
+
 </body>
 
 </html>

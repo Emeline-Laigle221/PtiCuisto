@@ -13,20 +13,13 @@
     <title>PtiCuisto</title>
 </head>
 <body>
-    <header>
-        <img src="img/Logo.png" alt="Logo">
-        <nav>
-            <div><a href="index.php">Accueil</a></div>
-            <div><a href="template/nosRecettes.php">Nos Recettes</a></div>
-            <div><a href="template/Filtre.php">Filtres</a></div>
-            <div><a href="template/connexion.php">Connexion</a></div>
-        </nav>
-    </header>
+    <?php include "header.php"?>
+
     <main>
         <div class="accueil">
             <div class="div-image">
                 <div class="image-accueil">
-                    <img src="img/accueil" alt="plat">
+                    <img src="img/accueil.jpg" alt="plat">
                 </div>
             </div>
             
@@ -54,5 +47,6 @@
             </div>
         </div>
     </main>
-    
+
+    <?php include "footer.php"?>
 </body>
