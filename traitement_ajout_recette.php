@@ -66,20 +66,25 @@
         for ($i = 1; $i <= $ingredientCount; $i++) {
             // Accédez aux données de chaque champ d'ingrédient en utilisant l'index de la boucle
             $ingredientName = $_POST["ingredient" . $i];
-            $reponse = $bdd->query('SELECT count(ingredient_id) as count from ingredient where ing_intitule=$ingredientName;');
-            echo $reponse;
-            while ($donnees = $reponse->fetch()){ 
-                if($donnees['count']==0){
-                    $req = $bdd->prepare('INSERT INTO ingredient(ingredient_id,ing_intitule) VALUES(?,?)');
-                    $req->execute(array(2,$ingredientName));
-                }
-                $reponse = $bdd->query('SELECT ingredient_id  from ingredient where ing_intitule=$ingredientName;');
-                while ($donnees = $reponse->fetch()){
-                    if($donnees['ingredient_id']!=NULL){
-                        $req = $bdd->prepare('INSERT INTO contenir (rec_id,ingredient_id) VALUES(?,?)');
-                        $req->execute(array(2,$donnees['ingredient_id'])); 
-                    }
-                }
+            echo var_dump($ingredientName);
+            $req= $bdd->prepare('SELECT COUNT(INGREDIENT_ID) FROM INGREDIENT WHERE ING_INTITULE=?;');
+            $req->execute([$ingredientName]);
+            $reponse = $req->fetch();
+            echo $reponse['COUNT(INGREDIENT_ID)'];
+            if($reponse['COUNT(INGREDIENT_ID)']>1){
+                echo "Erreur plus de une ligne de cette ingrédient dans la table";
+            }
+            elseif ($reponse['COUNT(INGREDIENT_ID)']==0) {
+                $req = $bdd->prepare('INSERT INTO INGREDIENT(INGREDIENT_ID,ING_INTITULE) VALUES(?,?)');
+                $req->execute(array(2,$ingredientName));
+            }
+            $reponse = $bdd->prepare('SELECT INGREDIENT_ID  from INGREDIENT where ING_INTITULE=?;');
+            $req->execute([$ingredientName]);
+            $reponse2 = $req->fetch();
+            echo $reponse2;
+            if($reponse2['INGREDIENT_ID']){
+                $req = $bdd->prepare('INSERT INTO CONTENIR (REC_ID,INGREDIENT_ID) VALUES(?,?)');
+                $req->execute(array(2,$reponse2['INGREDIENT_ID'])); 
             }
         }
 
