@@ -16,39 +16,43 @@
     <header>
         <img src="img/Logo.png" alt="Logo">
         <nav>
-            <div><a href="../index.php">Accueil</a></div>
-            <div><a href="">Nos Recettes</a></div>
+            <div><a href="index.php">Accueil</a></div>
+            <div><a href="template/nosRecettes.php">Nos Recettes</a></div>
             <div><a href="template/Filtre.php">Filtres</a></div>
-            <div><a href="">Connexion</a></div>
+            <div><a href="template/connexion.php">Connexion</a></div>
         </nav>
     </header>
     <main>
-        <div>
-            <div class="image_daccueil">
-                <img src="img/accueil" alt="plat">
+        <div class="accueil">
+            <div class="div-image">
+                <div class="image-accueil">
+                    <img src="img/accueil" alt="plat">
+                </div>
             </div>
             
-            <div id="Edito">
-                <img src="img/Pticuisto.png" alt="Pticuisto">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente mollitia id incidunt ratione neque laborum optio, eaque debitis. Atque eum ratione, dolores similique earum asperiores in necessitatibus rem illum cum.</p>
+            <div class="edito">
+                <div class="image-edito">
+                    <img src="img/Pticuisto.png" alt="Pticuisto">
+                </div>
+                <p class="texte-edito">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente mollitia id incidunt ratione neque laborum optio, eaque debitis. Atque eum ratione, dolores similique earum asperiores in necessitatibus rem illum cum.</p>
             </div>
             
-            <div>
+            <div class="edito dernieres-recettes">
                 <h1>LES DERNIÈRE RECETTES</h1>
                 <div>
-                    <img src="" alt="">
+                    <img src="img/accueil.jpg" alt="recette1">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto nemo minus magni nobis ex explicabo pariatur cum aperiam. Ratione eum quibusdam ab porro est accusamus sequi magnam perferendis, at similique?</p>
                 </div>
                 <div>
-                    <img src="" alt="">
+                    <img src="img/accueil.jpg" alt="recette2">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto nemo minus magni nobis ex explicabo pariatur cum aperiam. Ratione eum quibusdam ab porro est accusamus sequi magnam perferendis, at similique?</p>
                 </div>
                 <div>
-                    <img src="" alt="">
+                    <img src="img/accueil.jpg" alt="recette3">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto nemo minus magni nobis ex explicabo pariatur cum aperiam. Ratione eum quibusdam ab porro est accusamus sequi magnam perferendis, at similique?</p>
                 </div>
             </div>
         </div>
     </main>
-    <footer></footer>
+    
 </body>
