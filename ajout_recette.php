@@ -20,16 +20,15 @@
         <label for="contenu_de_la_recette"> Contenu de la recette</label>
         <label for="categorie">Choisissez la catégorie de votre recette : </label>
             <select name="categorie" id="categorie">
-                <option value="apero">Apéritif</option>
-                <option value="entree">Entrée</option>
-                <option value="plats">Plats</option>
-                <option value="dessert">Dessert</option>
+                <option value=1>Entrée</option>
+                <option value=2>Plats</option>
+                <option value=3>Dessert</option>
             </select>
         
 
     <h3>Ajouter des Ingrédients :</h3>
         <div id="ingredientList">
-            <input type="text" name="ingredient" placeholder="Ingrédient 1" required>
+            <input type="text" name="ingredient1" placeholder="Ingrédient 1" required>
         </div>
         <button type="button" id="addIngredient">Ajouter un Ingrédient</button>
         <br><br>
