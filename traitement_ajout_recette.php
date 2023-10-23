@@ -26,5 +26,5 @@
         echo "L'URL de l'image ne provient pas d'Unsplash.";
     }
 
-    //header('Location : ajout_rectte.php');
+    //header('Location : ajout_recette.php');
 ?>
