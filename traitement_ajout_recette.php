@@ -1,5 +1,6 @@
 <?php
-    //include_once "request.php"; dossier où il y a la variable de session
+    include_once "connexion.php";
+    //include_once() Inclure la où il y a variable session 
     //gerer le recette_id de façon automatique et la récupération de la valeur du select
 
     if(isset($_POST['titre_recette'])){
@@ -21,7 +22,7 @@
     if (strpos($_POST['lien_image'], $siteUnsplash) !== false) {
         echo "L'URL de l'image provient d'Unsplash.";
         $req = $bdd->prepare('INSERT INTO recette (recette_id, titre,resume,image,date_creation,date_modification,contenu,validation,categorie_id,uti_id) VALUES(?,?,?,?,NOW(),NOW(),?,0,?,?)');
-        $req->execute(array(2, strip_tags($_POST['titre_recette']),strip_tags($_POST['resume_de_la_recette']),strip_tags($_POST['lien_image']),strip_tags($_POST['contenu_de_la_recette']),...,$_SESSION['id'])); 
+        $req->execute(array(2, strip_tags($_POST['titre_recette']),strip_tags($_POST['resume_de_la_recette']),strip_tags($_POST['lien_image']),strip_tags($_POST['contenu_de_la_recette']),25,$_SESSION['id'])); 
     } else {
         echo "L'URL de l'image ne provient pas d'Unsplash.";
     }
