@@ -1,5 +1,5 @@
 <?php
-    if(isset($_SESSION['pseudo']) && isset($_POST['message'])){
+    if(isset(/**/ ){
         $req = $bdd->prepare('DELETE FROM recette where  ');
         $req->execute(array(($_SESSION['pseudo']), strip_tags($_POST['message']))); // idem pour la suppression des balises éventuelles du message 
         
