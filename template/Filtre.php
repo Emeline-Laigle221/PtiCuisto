@@ -1,3 +1,12 @@
+<?php
+    require_once 'connexion.php';
+    session_start();
+
+    if(!isset($_SESSION['pseudo'])){
+        $_SESSION['pseudo'] = '';
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -97,6 +106,40 @@
             <button class="modal-btn ingredient">Ingrédients</button>
 
         </div>
+        <?php
+            if (isset($_POST['valider-categorie'])) {
+                // Créez un tableau pour stocker les catégories sélectionnées
+                $categories = [];
+            
+                // Vérifiez quelles catégories ont été cochées
+                if (isset($_POST['entree'])) {
+                    $categories[] = 1; // Ajoutez la catégorie "Entrée"
+                }
+                if (isset($_POST['plats'])) {
+                    $categories[] = 2; // Ajoutez la catégorie "Plats"
+                }
+                if (isset($_POST['dessert'])) {
+                    $categories[] = 3; // Ajoutez la catégorie "Dessert"
+                }
+            
+                // Si des catégories ont été sélectionnées, construisez la requête SQL
+                if (!empty($categories)) {
+                    $categoryFilter = implode(', ', $categories);
+                    $query = $bdd->prepare('SELECT * FROM RECETTE WHERE CATEGORIE_ID IN (' . $categoryFilter . ');');
+                    
+                    $query->execute();
+                } else {
+                    // Si aucune catégorie n'a été sélectionnée, sélectionnez toutes les recettes
+                    $query = $bdd->prepare('SELECT * FROM RECETTE');
+                    $query->execute();
+                }
+                echo 'SELECT * FROM RECETTE WHERE CATEGORIE IN (' . $categoryFilter . ');';
+                while ($donnees = $query->fetch()) {
+                    echo "ID : " . $donnees['REC_ID'] . "<br>";
+                    echo "Titre : " . $donnees['TITRE'] . "<br>";
+                }
+            }
+        ?>
     </main>
     <footer></footer>
 </body>
