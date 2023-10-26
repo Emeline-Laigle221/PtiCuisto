@@ -1,16 +1,31 @@
+
 <?php
 
-// ------------------------------------------------------------------------------ Connexion à la base de données 'tchat' ------------------------------------------------------------------------------------------------------------
+$dotenv = fopen('.env', 'r');
+if ($dotenv) {
+    while (($line = fgets($dotenv)) !== false) {
+        $line = trim($line);
+        if (empty($line) || $line[0] === '#') {
+            continue;
+        }
 
-// Test de connexion
-try
-{
-    $bdd = new PDO('mysql:host=mysql.info.unicaen.fr:3306;dbname=jobard221_1;charset=utf8', 'jobard221', 'mooquoi3Phu2jui8'); // attention un mot de passe a été défini pour l'accès à la base de données
+        list($key, $value) = explode('=', $line, 2);
+        $_ENV[$key] = $value;
+    }
+    fclose($dotenv);
 }
 
-// Gestion des erreurs
-catch(Exception $e)
-{
-        die('Erreur : '.$e->getMessage());
+$host = $_ENV['DB_HOST'];
+$dbname = $_ENV['DB_NAME'];
+$user = $_ENV['DB_USER'];
+$pass = $_ENV['DB_PASS'];
+
+try {
+    $bdd = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connexion à la base de données réussie.";
+} catch (PDOException $e) {
+    echo "Erreur de connexion à la base de données : " . $e->getMessage();
 }
+
 ?>
