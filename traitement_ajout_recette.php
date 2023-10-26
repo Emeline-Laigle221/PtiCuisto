@@ -1,17 +1,16 @@
 <?php
-    include_once "connexion.php";
     //include_once() Inclure la où il y a variable session 
     //gerer le recette_id de façon automatique et la récupération de la valeur du select
 
     
     session_start();
-    include("connexion.php");
+    
 
     $_SESSION['pseudo'] = 21;
 
 
     function ajout_recette($post) {
-            
+        include("connexion.php");
         $siteUnsplash = "unsplash.com"; // URL d'Unsplash
 
         $reqMaxIDIngredient = $bdd->prepare('SELECT MAX(INGREDIENT_ID)+1 FROM INGREDIENT;');
@@ -69,6 +68,7 @@
                 }
                 elseif ($reponse['COUNT(INGREDIENT_ID)']==0) {
                     echo 'ici';
+                    echo $MaxIDIngredient['MAX(INGREDIENT_ID)+1'];
                     $req = $bdd->prepare('INSERT INTO INGREDIENT(INGREDIENT_ID,ING_INTITULE) VALUES(?,?)');
                     $req->execute(array($MaxIDIngredient['MAX(INGREDIENT_ID)+1'],$ingredientName));
                 }
