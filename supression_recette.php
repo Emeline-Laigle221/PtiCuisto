@@ -1,6 +1,6 @@
 <?php
     include_once "connexion.php";
-
+    //la fonction prend l'iD de la recette
     function supression(int $recID){
         if(isset($recID)){
             $req3 = $bdd->prepare('DELETE FROM `CONTENIR` WHERE REC_ID=?');
