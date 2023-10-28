@@ -15,18 +15,24 @@
 <body>
     <?php include "header.php"?>
     <main>
-        <div class="recette">
-            <img src="" alt="">
-            <div>
-                <h2>Titre</h2>
-                <h3>Catégorie</h3>
-                <h3>Résumé</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem doloribus explicabo culpa a blanditiis numquam vel nobis itaque, facilis nostrum facere delectus illum id magnam quos earum rerum incidunt esse.</p>
-            </div>
-            <div>
-                
-            </div>
-        </div>
+    <div class="recette">
+    <div class="image-recette">
+        <img src="../img/accueil.jpg" alt="plats">
+    </div>
+    <div class="tags">
+        <div class="tag"><p>Tarte</p></div>
+        <div class="tag"><p>Tarte</p></div>
+        <div class="tag"><p>Tarte</p></div>
+        <div class="tag"><p>Tarte</p></div>
+    </div>
+    <div class="info-recette">
+        <h2 class="titre-recette">Titre</h2>
+        <h3>Catégorie</h3>
+        <br>
+        <h3>Résumé</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores praesentium eligendi vitae mollitia consequuntur, pariatur maiores nisi. Maiores, soluta eaque!</p>
+    </div>
+</div>
     </main>
     <?php include "footer.php"?>
 

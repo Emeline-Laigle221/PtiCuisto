@@ -16,28 +16,50 @@
     <?php include "header.php"?>
 
     <main>
-        <form action="" method="post">
-            <h4>Identifiez vous</h4>
-            <br/>
-            <label for="nom">
-                Nom : 
-            </label>
-            <input type="text" name="nom" required><br />
-
-            <label for="email">
-                Adresse Mail :
-            </label> 
-            <input type="email" name="adresse_mail" required>
-            <br/>
-
-            <label for="password">
-                Mot de passe :
-            </label> 
-            <input type="password" name="password" required>
-            <br/>
-
-            <input type="submit" value="S'inscrire">
-        </form>
+        <div class="connexion">
+            <div class="connect-p1"><h3>Inscription</h3></div>
+            <div class="connect-p2">
+                <form action="../controller/traitement_inscription.php" method="post">
+                    <div class="input">
+                        <div>
+                            <label for="nom">Pseudo : </label>
+                            <input type="text" id="nom" name="nom"
+                                placeholder="Princecorg" required>
+                        </div>
+                        <div>
+                            <label for="prenom">Nom : </label>
+                            <input type="text" id="prenom" name="prenom"
+                                placeholder="Vallot" required>
+                        </div>
+                        <div>
+                            <label for="pseudo">Prenom : </label>
+                            <input type="text" id="pseudo" name="pseudo"
+                                placeholder="Christophe" required>
+                        </div>
+                        <div>
+                            <label for="email">Adresse Email :</label>
+                            <input type="email" id="email" name="email"
+                                placeholder="email@example.com" required>
+                                <br>
+                        </div>
+                        <div>
+                            <label for="password">Mot de Passe :</label>
+                            <input type="password" id="password" name="password"
+                                placeholder="Password" required>
+                        </div>
+                    </div>
+                    <div class="btns">
+                        <button class="btn" type="submit">S'incrire</button>
+                        <div class="btn-container">
+                            <button class="link">
+                                <a href="page-connexion.php">J'ai déjà un compte</a>
+                                <br>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </main>
 
     <?php include "footer.php"?>

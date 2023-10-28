@@ -1,0 +1,18 @@
+<div class="recette">
+    <div class="image-recette">
+        <img src="../img/accueil.jpg" alt="plats">
+    </div>
+    <div class="tags">
+        <div class="tag"><p>Tarte</p></div>
+        <div class="tag"><p>Tarte</p></div>
+        <div class="tag"><p>Tarte</p></div>
+        <div class="tag"><p>Tarte</p></div>
+    </div>
+    <div class="info-recette">
+        <h2 class="titre-recette">Titre</h2>
+        <h3>Catégorie</h3>
+        <br>
+        <h3>Résumé</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores praesentium eligendi vitae mollitia consequuntur, pariatur maiores nisi. Maiores, soluta eaque!</p>
+    </div>
+</div>

@@ -15,8 +15,15 @@
 </head>
 
 <body>
-    <?php include "header.php"?>
-
+    <header>
+        <img src="../img/Logo.png" alt="Logo">
+        <nav>
+            <div><a href="../index.php">Accueil</a></div>
+            <div><a href="">Nos Recettes</a></div>
+            <div><a href="Filtre.php">Filtres</a></div>
+            <div><a href="connexion.php">Connexion</a></div>
+        </nav>
+    </header>
     <main>
         <div class="connexion">
             <div class="connect-p1"><h3>Connexion</h3></div>
@@ -38,7 +45,7 @@
                             <br>
                         </div>
                         <div>
-                            <button class="btn">
+                            <button class="btn" type="submit">
                                 <a href="page-inscription.php">S'inscrire</a>
                             </button>
                         </div>
@@ -47,9 +54,19 @@
             </div>
         </div>
     </main>
-    
-    <?php include "footer.php"?>
-
+    <footer>
+        <div class="reseaux">
+            <a target="_blank_" href="https://www.facebook.com" >
+                <img src="../img/facebook.jpg" alt="Facebook">
+            </a>
+            <a target="_blank_" href="https://X.com">
+                <img src="../img/X.png" alt="X">
+            </a>
+            <a target="_blank_" href="https://fr.linkedin.com">
+                <img src="../img/linkedin.png" alt="LinkedIn">
+            </a>
+        </div>
+    </footer>
 </body>
 
 </html>

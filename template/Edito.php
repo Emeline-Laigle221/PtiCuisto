@@ -13,7 +13,15 @@
     <title>PtiCuisto</title>
 </head>
 <body>
-    <?php include "header.php"?>
+    <header>
+        <img src="img/Logo.png" alt="Logo">
+        <nav>
+            <div><a href="index.php">Accueil</a></div>
+            <div><a href="template/nosRecettes.php">Nos Recettes</a></div>
+            <div><a href="template/Filtre.php">Filtres</a></div>
+            <div><a href="template/connexion.php">Connexion</a></div>
+        </nav>
+    </header>
 
     <main>
         <div class="accueil">
@@ -48,5 +56,17 @@
         </div>
     </main>
 
-    <?php include "footer.php"?>
+    <footer>
+    <div class="reseaux">
+        <a target="_blank_" href="https://www.facebook.com" >
+            <img src="img/facebook.jpg" alt="Facebook">
+        </a>
+        <a target="_blank_" href="https://X.com">
+            <img src="img/X.png" alt="X">
+        </a>
+        <a target="_blank_" href="https://fr.linkedin.com">
+            <img src="img/linkedin.png" alt="LinkedIn">
+        </a>
+    </div>
+</footer>
 </body>
