@@ -22,7 +22,7 @@ if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["pseudo"]) &
         $insert = $bdd->prepare($sql);
 
         if ($insert->execute()) {
-            echo "Enregistrement ajouté avec succès.";
+            
         } else {
             echo "Erreur : " . $sql . "<br>" . $bdd->error;
         }
@@ -33,4 +33,6 @@ if (isset($_POST["nom"]) && isset($_POST["prenom"]) && isset($_POST["pseudo"]) &
 } else {
     echo "Ça ne fonctionne pas.";
 }
+header("Location: ../index.php");
+exit;
 ?>
