@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -27,7 +28,7 @@
                     <div class="input">
                         <?php
                         if (isset($_GET['error'])) {
-                            echo "<p style=\"color=red;\">Ce compte existe déjà</p>";
+                            echo "<p style=\"color:red;\">Ce compte existe déjà</p>";
                         }
                         ?>
                         <div>

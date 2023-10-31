@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,9 +17,11 @@
 </head>
 <body>
     <?php include "header.php"?>    
-
-    
-    
+    <main>
+        <div class="ajout">
+            <button class="btn">Ajouter Recette</button>
+        </div>
+    </main>
     <?php include "footer.php"?>
 
 </body>

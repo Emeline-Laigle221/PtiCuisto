@@ -19,7 +19,13 @@
             <div><a href="index.php">Accueil</a></div>
             <div><a href="template/nosRecettes.php">Nos Recettes</a></div>
             <div><a href="template/Filtre.php">Filtres</a></div>
-            <div><a href="template/connexion.php">Connexion</a></div>
+            <?php
+            if($_SESSION["type"] === 0){
+                echo"<div><a href=\"template/page-connexion.php\">Connexion</a></div>";
+            }else{
+                echo "<div><a href=\"controller/traitement_deconnexion.php\">Déconnexion</a></div>";
+            }
+            ?>        
         </nav>
     </header>
 

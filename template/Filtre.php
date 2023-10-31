@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,7 +17,10 @@
     <title>PtiCuisto</title>
 </head>
 <body>
-    <?php include "header.php"?>
+    <?php 
+        echo $_SESSION["type"];
+        include "header.php";
+    ?>
 
     <main>
         <div class="filtre-container">

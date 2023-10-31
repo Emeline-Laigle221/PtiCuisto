@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once("../manager/connexion_BDD.php");
 
 if (isset($_POST["nom"])) {

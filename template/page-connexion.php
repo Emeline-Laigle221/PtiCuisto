@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -15,22 +18,22 @@
 </head>
 
 <body>
-    <?php include "header.php"?>
+    <?php include "header.php" ?>
 
     <main>
         <div class="connexion">
-            <div class="connect-p1"><h3>Connexion</h3></div>
+            <div class="connect-p1">
+                <h3>Connexion</h3>
+            </div>
             <div class="connect-p2">
-                <form>
+                <form action="../controller/traitement_connexion.php" method="post">
                     <div>
                         <label for="email">Adresse Email :</label>
-                        <input type="email" id="email"
-                            placeholder="email@example.com"><br>
+                        <input type="email" name="email" id="email" placeholder="email@example.com"><br>
                     </div>
                     <div>
                         <label for="password">Mot de Passe :</label>
-                        <input type="password" id="password"
-                            placeholder="Password">
+                        <input type="password" name="password" id="password" placeholder="Password">
                     </div>
                     <div class="btns">
                         <div class="btn-container">
@@ -47,8 +50,8 @@
             </div>
         </div>
     </main>
-    
-    <?php include "footer.php"?>
+
+    <?php include "footer.php" ?>
 
 </body>
 
