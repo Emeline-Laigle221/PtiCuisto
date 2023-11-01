@@ -2,7 +2,7 @@
     require_once 'connexion.php';
     session_start();
 
-    if(!isset($_SESSION['pseudo'])){
+    if (!isset($_SESSION['pseudo'])) {
         $_SESSION['pseudo'] = '';
     }
 ?>
@@ -107,39 +107,87 @@
 
         </div>
         <?php
+            // Initialisation des filtres
+            $categoryFilter = ''; // Filtre de catégorie
+            $ingredientFilter = ''; // Filtre d'ingrédients
+
             if (isset($_POST['valider-categorie'])) {
-                // Créez un tableau pour stocker les catégories sélectionnées
+                // Traitement des catégories
                 $categories = [];
-            
-                // Vérifiez quelles catégories ont été cochées
+
                 if (isset($_POST['entree'])) {
-                    $categories[] = 1; // Ajoutez la catégorie "Entrée"
+                    $categories[] = 1;
                 }
                 if (isset($_POST['plats'])) {
-                    $categories[] = 2; // Ajoutez la catégorie "Plats"
+                    $categories[] = 2;
                 }
                 if (isset($_POST['dessert'])) {
-                    $categories[] = 3; // Ajoutez la catégorie "Dessert"
+                    $categories[] = 3;
                 }
-            
-                // Si des catégories ont été sélectionnées, construisez la requête SQL
+
                 if (!empty($categories)) {
-                    $categoryFilter = implode(', ', $categories);
-                    $query = $bdd->prepare('SELECT * FROM RECETTE WHERE CATEGORIE_ID IN (' . $categoryFilter . ');');
-                    
-                    $query->execute();
-                } else {
-                    // Si aucune catégorie n'a été sélectionnée, sélectionnez toutes les recettes
-                    $query = $bdd->prepare('SELECT * FROM RECETTE');
-                    $query->execute();
+                    $categoryFilter = 'CATEGORIE_ID IN (' . implode(', ', $categories) . ')';
                 }
-                echo 'SELECT * FROM RECETTE WHERE CATEGORIE IN (' . $categoryFilter . ');';
-                while ($donnees = $query->fetch()) {
-                    echo "ID : " . $donnees['REC_ID'] . "<br>";
-                    echo "Titre : " . $donnees['TITRE'] . "<br>";
+            }
+
+            if (isset($_POST['valider-ingredients'])) {
+                // Traitement des ingrédients
+                $ingredients = [];
+
+                if (isset($_POST['tomate'])) {
+                    $ingredients[] = 'Tomate';
                 }
+                if (isset($_POST['concombre'])) {
+                    $ingredients[] = 'Concombre';
+                }
+                if (isset($_POST['champignon'])) {
+                    $ingredients[] = 'Champignon';
+                }
+                if (isset($_POST['porc'])) {
+                    $ingredients[] = 'Porc';
+                }
+                if (isset($_POST['poulet'])) {
+                    $ingredients[] = 'Poulet';
+                }
+
+                if (!empty($ingredients)) {
+                    $ingredientFilter = 'ING_INTITULE LIKE "%' . implode('%" AND ING_INTITULE LIKE "%', $ingredients) . '%"';
+                    $ingredientJoin = ' JOIN CONTENIR USING (REC_ID) JOIN INGREDIENT USING (INGREDIENT_ID)';
+                }
+            }
+
+            // Construction de la requête SQL
+            $sql = 'SELECT * FROM RECETTE';
+
+            if (!empty($categoryFilter) || !empty($ingredientFilter)) {
+                if (!empty($ingredientFilter)) {
+                    $sql .= $ingredientJoin;
+                }
+                $sql .= ' WHERE ';
+
+                if (!empty($categoryFilter)) {
+                    $sql .= $categoryFilter;
+                }
+
+                if (!empty($categoryFilter) && !empty($ingredientFilter)) {
+                    $sql .= ' AND ';
+                }
+
+                if (!empty($ingredientFilter)) {
+                    $sql .= $ingredientFilter;
+                }
+            }
+
+            $query = $bdd->prepare($sql);
+            //echo $sql;
+            $query->execute();
+
+            while ($donnees = $query->fetch()) {
+                echo "ID : " . $donnees['REC_ID'] . "<br>";
+                echo "Titre : " . $donnees['TITRE'] . "<br>";
             }
         ?>
     </main>
     <footer></footer>
 </body>
+</html>
