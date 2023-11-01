@@ -130,6 +130,11 @@
                 }
             }
 
+            if (isset($_POST['valider-titre']) && !empty($_POST['titre'])) {
+                $titreFilter = 'TITRE LIKE :titre';
+                $titreValue = '%' . $_POST['titre'] . '%';
+            }
+
             if (isset($_POST['valider-ingredients'])) {
                 // Traitement des ingrédients
                 $ingredients = [];
@@ -159,7 +164,7 @@
             // Construction de la requête SQL
             $sql = 'SELECT * FROM RECETTE';
 
-            if (!empty($categoryFilter) || !empty($ingredientFilter)) {
+            if (!empty($categoryFilter) || !empty($ingredientFilter) || !empty($titreFilter)) {
                 if (!empty($ingredientFilter)) {
                     $sql .= $ingredientJoin;
                 }
@@ -176,10 +181,21 @@
                 if (!empty($ingredientFilter)) {
                     $sql .= $ingredientFilter;
                 }
+
+                if ((!empty($categoryFilter) || !empty($ingredientFilter)) && !empty($titreFilter)) {
+                    $sql .= ' AND ';
+                }
+
+                if (!empty($titreFilter)) {
+                    $sql .= $titreFilter;
+                }
             }
 
             $query = $bdd->prepare($sql);
-            //echo $sql;
+            echo $sql;
+            if (isset($titreFilter)) {
+                $query->bindValue(':titre', $titreValue, PDO::PARAM_STR);
+            }
             $query->execute();
 
             while ($donnees = $query->fetch()) {
