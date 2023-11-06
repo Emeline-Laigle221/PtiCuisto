@@ -5,9 +5,10 @@
      * Fonction retournant toutes les recettes avec les propriétés : titre, résumé, image et intitulé de la catégorie
      * Le retour se fait sous la forme d'un tableau à deux dimensions : la première pour choisir la recette, et la deuxième pourchoisir la propriété (titre, rec_resume, 
      * rec_image et categorie)
+     * Les recettes sont organisées par date de modifications 
      */
     function liste(){
-        include_once("template/connexion.php"); //Ligne à modifier avec le .env
+        include_once("connexion.php");
         $reponse = $bdd->query('SELECT titre, rec_resume, rec_image, cat_intitule as categorie from RECETTE join CATEGORIE using(categorie_id) ORDER BY date_modification;');
 
         $retour = array();
