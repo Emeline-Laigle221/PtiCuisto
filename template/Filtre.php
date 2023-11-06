@@ -164,46 +164,44 @@
             // Construction de la requête SQL
             $sql = 'SELECT * FROM RECETTE';
 
-            if (!empty($categoryFilter) || !empty($ingredientFilter) || !empty($titreFilter)) {
-                if (!empty($ingredientFilter)) {
-                    $sql .= $ingredientJoin;
-                }
-                $sql .= ' WHERE ';
+            // Initialisation d'un tableau pour stocker les clauses WHERE
+            $whereClauses = [];
 
-                if (!empty($categoryFilter)) {
-                    $sql .= $categoryFilter;
-                }
+            if (!empty($categoryFilter)) {
+                $whereClauses[] = $categoryFilter;
+            }
 
-                if (!empty($categoryFilter) && !empty($ingredientFilter)) {
-                    $sql .= ' AND ';
-                }
+            if (!empty($ingredientFilter)) {
+                $whereClauses[] = $ingredientFilter;
+            }
 
-                if (!empty($ingredientFilter)) {
-                    $sql .= $ingredientFilter;
-                }
+            if (!empty($titreFilter)) {
+                $whereClauses[] = $titreFilter;
+            }
 
-                if ((!empty($categoryFilter) || !empty($ingredientFilter)) && !empty($titreFilter)) {
-                    $sql .= ' AND ';
-                }
-
-                if (!empty($titreFilter)) {
-                    $sql .= $titreFilter;
-                }
+            // Si des clauses WHERE ont été ajoutées, combinez-les avec AND
+            if (!empty($whereClauses)) {
+                $sql .= ' WHERE ' . implode(' AND ', $whereClauses);
             }
 
             $query = $bdd->prepare($sql);
             echo $sql;
+
+            // Associez les valeurs aux paramètres de la requête, si nécessaire
             if (isset($titreFilter)) {
                 $query->bindValue(':titre', $titreValue, PDO::PARAM_STR);
             }
+
             $query->execute();
 
             while ($donnees = $query->fetch()) {
                 echo "ID : " . $donnees['REC_ID'] . "<br>";
                 echo "Titre : " . $donnees['TITRE'] . "<br>";
             }
+
         ?>
     </main>
     <footer></footer>
 </body>
 </html>
+tâche-#3
