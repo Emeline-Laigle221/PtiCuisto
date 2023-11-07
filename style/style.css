@@ -184,6 +184,7 @@ footer{
 }
 
 .modal{
+    margin-top: 50px;
     opacity: 0;
     width: 95%;
     max-width: 500px;
@@ -236,6 +237,11 @@ footer{
 
 .list-ingredient{
     overflow: scroll;
+    max-height:50vh;
+}
+
+.check{
+    margin: 5px;
 }
 
 /* ----------------------------- Style Carte Recettes ----------------------------- */

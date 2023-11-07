@@ -19,7 +19,7 @@
     <?php include "header.php"?>    
     <main>
         <div class="ajout">
-            <button class="btn">Ajouter Recette</button>
+            <button class="btn"><a href="ajout-recette.php">Ajouter Recette</a></button>
         </div>
     </main>
     <?php include "footer.php"?>

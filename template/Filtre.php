@@ -78,7 +78,7 @@
                             $query = $bdd->prepare('SELECT ING_INTITULE FROM INGREDIENT');
                             $query->execute();
                             while($row = $query->fetch()) {
-                                echo '<input type="checkbox" name=\"'.$row["ING_INTITULE"].'\" id=\"'.$row["ING_INTITULE"].'\">';
+                                echo '<input class="check" type="checkbox" name=\"'.$row["ING_INTITULE"].'\" id=\"'.$row["ING_INTITULE"].'\">';
                                 echo '<label for= \"'.$row["ING_INTITULE"].'\">'.$row["ING_INTITULE"].'</label>';
                                 echo"<br>";
                             }
