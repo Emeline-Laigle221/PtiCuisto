@@ -9,7 +9,7 @@
      */
     function liste(){
         include_once("connexion.php");
-        $reponse = $bdd->query('SELECT titre, rec_resume, rec_image, cat_intitule as categorie from RECETTE join CATEGORIE using(categorie_id) ORDER BY date_modification;');
+        $reponse = $bdd->query('SELECT titre, rec_resume, rec_image, cat_intitule as categorie from RECETTE join CATEGORIE using(categorie_id) where rec_validation = 1 ORDER BY date_modification;');
 
         $retour = array();
         $i = 0;
@@ -33,8 +33,8 @@
      * Les recettes sont organisées par date de modifications 
      */
     function liste_validation() {
-        include_once("connexion.php");
-        $reponse = $bdd->query('SELECT titre, rec_resume, rec_image, cat_intitule as categorie from RECETTE join CATEGORIE using(categorie_id) where rec_validation = 0 ORDER BY date_modification;');
+        require("connexion.php");
+        $reponse = $bdd->query('SELECT titre, rec_resume, rec_image, cat_intitule as categorie, rec_id from RECETTE join CATEGORIE using(categorie_id) where rec_validation = 0 ORDER BY date_modification;');
 
         $retour = array();
         $i = 0;
@@ -44,9 +44,22 @@
             $retour[$i]['rec_resume'] = $donnees['rec_resume'];
             $retour[$i]['rec_image'] = $donnees['rec_image'];
             $retour[$i]['categorie'] = $donnees['categorie'];
+            $retour[$i]['rec_id'] = $donnees['rec_id'];
             $i++;
         }
 
         return $retour;
+    }
+
+    function valider($num){
+        require("connexion.php");
+        $req = $bdd->prepare('UPDATE RECETTE set rec_validation = 1 where rec_id='. $num .';');
+        $req->execute();
+    }
+
+    function interdire($num){
+        require("connexion.php");
+        $req = $bdd->prepare('UPDATE RECETTE set rec_validation = -1 where rec_id='. $num .';');
+        $req->execute();
     }
 ?>
