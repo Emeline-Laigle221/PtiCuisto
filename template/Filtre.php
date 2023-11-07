@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require_once("../manager/connexion.php");
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -72,22 +73,17 @@
                     <button class="close-modal ingredient">X</button>
                     <h1>Ingrédients</h1>
                     <form action="" method="post">
-
-                        <input type="checkbox" name="tomate" id="tomate">
-                        <label for="tomate">Tomate</label>
-                        <br>
-                        <input type="checkbox" name="concombre" id="concombre">
-                        <label for="concombre">Concombre</label>
-                        <br>
-                        <input type="checkbox" name="champignon" id="champignon">
-                        <label for="champignon">Champignon</label>
-                        <br>
-                        <input type="checkbox" name="porc" id="porc">
-                        <label for="porc">Porc</label>
-                        <br>
-                        <input type="checkbox" name="poulet" id="poulet">
-                        <label for="poulet">Poulet</label>
-                        <br>
+                        <div class="list-ingredient">
+                            <?php
+                            $query = $bdd->prepare('SELECT ING_INTITULE FROM INGREDIENT');
+                            $query->execute();
+                            while($row = $query->fetch()) {
+                                echo '<input type="checkbox" name=\"'.$row["ING_INTITULE"].'\" id=\"'.$row["ING_INTITULE"].'\">';
+                                echo '<label for= \"'.$row["ING_INTITULE"].'\">'.$row["ING_INTITULE"].'</label>';
+                                echo"<br>";
+                            }
+                            ?>
+                        </div>
                         <input class="valider" value="Valider" type="submit" name="valider-ingredients" id="valider-ingredients">
                     </form>
                 </div>

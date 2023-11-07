@@ -234,6 +234,10 @@ footer{
     font-weight: 500;
 }
 
+.list-ingredient{
+    overflow: scroll;
+}
+
 /* ----------------------------- Style Carte Recettes ----------------------------- */
 
 .recette{
