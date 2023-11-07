@@ -18,4 +18,14 @@
             echo '<a href="index.php?page=liste&depart=' . ($depart - 10) . '">Moins</a>';
         }
     }
+
+    function afficher_recettes_validation(){
+        $recettes = liste_validation();
+        echo '<table>';
+        foreach($recettes as $recette){
+            echo '<tr> <td>' . $recette['titre'] . '<td/><td>' . $recette['categorie'] . '<td/><td>' . $recette['rec_resume']  . '<td/>' . '<td>' . '<img src=' . $recette['rec_image'] . 'alt="image de la recette">' . '<td/><tr/>';
+            echo '<br>';
+        }
+        echo '<table/>';
+    }
 ?>
