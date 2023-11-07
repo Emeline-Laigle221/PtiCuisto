@@ -29,7 +29,7 @@
         $recettes = liste();
         echo '<table>';
         for($i = $depart; $i < $depart + $nb && $i < count($recettes); $i++){ 
-            echo '<tr> <td> <a href="index.php?page=detailsRecette&recette=' . $recettes[$i]['rec_id'] . '">' . $recettes[$i]['titre'] . '<td/><td>' . $recettes[$i]['categorie'] . '<td/><td>' . $recettes[$i]['rec_resume']  . '<td/>' . '<td>' . '<img src=' . $recettes[$i]['rec_image'] . 'alt="image de la recette">' . '<td/><tr/>';
+            echo '<tr> <td> <a href="index.php?page=detailsRecette&recette=' . $recettes[$i]['rec_id'] . '">' . $recettes[$i]['titre'] . '</a><td/><td>' . $recettes[$i]['categorie'] . '<td/><td>' . $recettes[$i]['rec_resume']  . '<td/>' . '<td>' . '<a href="index.php?page=detailsRecette&recette=' . $recettes[$i]['rec_id'] . '"><img src=' . $recettes[$i]['rec_image'] . 'alt="image de la recette">' . '</img></a><td/><tr/>';
             echo '<br>';
         }
         echo '<table/>';
