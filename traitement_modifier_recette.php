@@ -9,7 +9,7 @@
     $_SESSION['pseudo'] = 21;
 
 
-    function ajout_recette($post) {
+    function modifier_recette($post, $num_recette) {
         include("connexion.php");
         $siteUnsplash = "unsplash.com"; // URL d'Unsplash
 
@@ -20,11 +20,11 @@
         $reqMaxIDRecette->execute();
         $MaxIDRecette=$reqMaxIDRecette->fetch();
 
-        //incertion table recette
+        //modification table recette
         if (strpos($post['lien_image'], $siteUnsplash) !== false) {
             echo "L'URL de l'image provient d'Unsplash.";
-            $req = $bdd->prepare('INSERT INTO `RECETTE`(`REC_ID`, `TITRE`, `REC_RESUME`, `REC_IMAGE`, `DATE_CREATION`, `DATE_MODIFICATION`, `CONTENU`, `REC_VALIDATION`, `CATEGORIE_ID`, `UTI_ID`) VALUES(?,?,?,?,NOW(),NOW(),?,0,?,?);');
-            if ($req->execute(array($MaxIDRecette['MAX(REC_ID)+1'], strip_tags($post['titre_recette']),strip_tags($post['resume_de_la_recette']),strip_tags($post['lien_image']),strip_tags($post['contenu_de_la_recette']),$post['categorie'],$_SESSION['pseudo']))) {
+            $req = $bdd->prepare('UPDATE `RECETTE` SET `TITRE`= ?,`REC_RESUME`=?,`REC_IMAGE`=?,`DATE_MODIFICATION`=NOW(),`CONTENU`=?,`REC_VALIDATION`=0,`CATEGORIE_ID`=?,`UTI_ID`=? WHERE REC_ID=?');
+            if ($req->execute(array(strip_tags($post['titre_recette']),strip_tags($post['resume_de_la_recette']),strip_tags($post['lien_image']),strip_tags($post['contenu_de_la_recette']),$post['categorie'],$_SESSION['pseudo']),$num_recette)) {
                 $rowCount = $req->rowCount();
                 if ($rowCount > 0) {
                     echo "L'insertion dans la table RECETTE s'est bien déroulée. Nombre de lignes affectées : " . $rowCount;
@@ -59,26 +59,39 @@
                 // Accédez aux données de chaque champ d'ingrédient en utilisant l'index de la boucle
                 $ingredientName = $post["ingredient" . $i];
                 echo var_dump($ingredientName);
-                $req= $bdd->prepare('SELECT COUNT(INGREDIENT_ID) FROM INGREDIENT WHERE ING_INTITULE=?;');
-                $req->execute([$ingredientName]);
+                $req= $bdd->prepare('SELECT COUNT(INGREDIENT_ID) FROM INGREDIENT JOIN CONTENIR USING(INGREDIENT_ID) WHERE ING_INTITULE=? and REC_ID=?;');
+                $req->execute(array($ingredientName,$num_recette));
+                //verifie si l'ingrédient est déjà dans la recette
                 $reponse = $req->fetch();
                 echo $reponse['COUNT(INGREDIENT_ID)'];
                 if($reponse['COUNT(INGREDIENT_ID)']>1){
-                    echo "Erreur plus de une ligne de cette ingrédient dans la table";
+                    echo "Erreur cette ingrédient est deux fois dans la recette";
                 }
-                elseif ($reponse['COUNT(INGREDIENT_ID)']==0) {
+                elseif ($reponse['COUNT(INGREDIENT_ID)']==0) { //ingrédient pas dans la recette
                     echo 'ici';
-                    echo $MaxIDIngredient['MAX(INGREDIENT_ID)+1'];
-                    $req = $bdd->prepare('INSERT INTO INGREDIENT(INGREDIENT_ID,ING_INTITULE) VALUES(?,?)');
-                    $req->execute(array($MaxIDIngredient['MAX(INGREDIENT_ID)+1'],$ingredientName));
-                }
-                $req2 = $bdd->prepare('SELECT INGREDIENT_ID from INGREDIENT where ING_INTITULE=? ;');
-                $req2->execute([$ingredientName]);
-                $reponse2 = $req2->fetch();
-                echo $reponse2['INGREDIENT_ID'];
-                if($reponse2['INGREDIENT_ID']){
-                    $req3 = $bdd->prepare('INSERT INTO CONTENIR (REC_ID,INGREDIENT_ID) VALUES(?,?)');
-                    $req3->execute(array($MaxIDRecette['MAX(REC_ID)+1'],$reponse2['INGREDIENT_ID'])); 
+                    $req= $bdd->prepare('SELECT COUNT(INGREDIENT_ID) FROM INGREDIENT WHERE ING_INTITULE=?;');
+                    //regarde si l'ingrédient existe déjà
+                    $req->execute([$ingredientName]);
+                    $reponse = $req->fetch();
+                    echo $reponse['COUNT(INGREDIENT_ID)'];
+                    if($reponse['COUNT(INGREDIENT_ID)']>1){
+                        echo "Erreur plus de une ligne de cette ingrédient dans la table";
+                    }
+                    elseif ($reponse['COUNT(INGREDIENT_ID)']==0) { //si ingrédient n'existe pas encore
+                        echo 'ici';
+                        echo $MaxIDIngredient['MAX(INGREDIENT_ID)+1'];
+                        $req = $bdd->prepare('INSERT INTO INGREDIENT(INGREDIENT_ID,ING_INTITULE) VALUES(?,?)');
+                        $req->execute(array($MaxIDIngredient['MAX(INGREDIENT_ID)+1'],$ingredientName));
+                    }
+                    $req2 = $bdd->prepare('SELECT INGREDIENT_ID from INGREDIENT where ING_INTITULE=? ;');
+                    $req2->execute([$ingredientName]);
+                    $reponse2 = $req2->fetch();
+                    echo $reponse2['INGREDIENT_ID'];
+                    if($reponse2['INGREDIENT_ID']){
+                        $req3 = $bdd->prepare('INSERT INTO CONTENIR (REC_ID,INGREDIENT_ID) VALUES(?,?)');
+                        $req3->execute(array($MaxIDRecette['MAX(REC_ID)+1'],$reponse2['INGREDIENT_ID'])); 
+                        //ajoute l'ingrédient à la recette
+                    }
                 }
             }
 
@@ -103,8 +116,9 @@
 
 
     else{
-        ajout_recette($_POST);
+        modifier_recette_recette($_POST,22);
     }
+
 
     
     //header('Location : ajout_recette.php');
