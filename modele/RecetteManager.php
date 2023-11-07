@@ -1,9 +1,8 @@
 <?php
-
-    function trouver_recette($nom){
+    function trouver_recette($num){
         require("connexion.php");
 
-        $reponse = $bdd->query("SELECT rec_id, titre, rec_resume, rec_image, cat_intitule, contenu from RECETTE join CATEGORIE using(categorie_id) where titre = '" . $nom . "';");
+        $reponse = $bdd->query("SELECT rec_id, titre, rec_resume, rec_image, cat_intitule, contenu from RECETTE join CATEGORIE using(categorie_id) where rec_id = " . $num . ";");
 
         $retour = array();
 
@@ -43,7 +42,7 @@
      */
     function liste(){
         require("connexion.php");
-        $reponse = $bdd->query('SELECT titre, rec_resume, rec_image, cat_intitule as categorie from RECETTE join CATEGORIE using(categorie_id) where rec_validation = 1 ORDER BY date_modification;');
+        $reponse = $bdd->query('SELECT titre, rec_resume, rec_image, cat_intitule as categorie, rec_id from RECETTE join CATEGORIE using(categorie_id) where rec_validation = 1 ORDER BY date_modification;');
 
         $retour = array();
         $i = 0;
@@ -53,6 +52,7 @@
             $retour[$i]['rec_resume'] = $donnees['rec_resume'];
             $retour[$i]['rec_image'] = $donnees['rec_image'];
             $retour[$i]['categorie'] = $donnees['categorie'];
+            $retour[$i]['rec_id'] = $donnees['rec_id'];
             $i++;
         }
 

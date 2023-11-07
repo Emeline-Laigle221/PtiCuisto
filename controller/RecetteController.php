@@ -1,8 +1,8 @@
 <?php
     require_once('modele/RecetteManager.php'); //Récupération du modèle
 
-    function detailRecette($nom){
-        $recette = trouver_recette($nom);
+    function detailRecette($num){
+        $recette = trouver_recette($num);
         echo '<h1>' . $recette['titre'] . '</h1>';
         echo '<img src=' . $recette['rec_image'] . 'alt="image de la recette">';
         echo '<p>' . $recette['categorie'] . '</p>';
@@ -29,7 +29,7 @@
         $recettes = liste();
         echo '<table>';
         for($i = $depart; $i < $depart + $nb && $i < count($recettes); $i++){ 
-            echo '<tr> <td>' . $recettes[$i]['titre'] . '<td/><td>' . $recettes[$i]['categorie'] . '<td/><td>' . $recettes[$i]['rec_resume']  . '<td/>' . '<td>' . '<img src=' . $recettes[$i]['rec_image'] . 'alt="image de la recette">' . '<td/><tr/>';
+            echo '<tr> <td> <a href="index.php?page=detailsRecette&recette=' . $recettes[$i]['rec_id'] . '">' . $recettes[$i]['titre'] . '<td/><td>' . $recettes[$i]['categorie'] . '<td/><td>' . $recettes[$i]['rec_resume']  . '<td/>' . '<td>' . '<img src=' . $recettes[$i]['rec_image'] . 'alt="image de la recette">' . '<td/><tr/>';
             echo '<br>';
         }
         echo '<table/>';
