@@ -29,7 +29,36 @@ session_start();
     if (!isset($_SESSION["type"])) {
         $_SESSION["type"] = 0;
     }
-    include 'template/Edito.php';
+    if(isset($_GET['page'])){
+        
+        if($_GET['page'] == 'liste'){
+            require_once("controller/RecetteController.php");
+            $depart = 0;
+            if (isset($_GET['plus'])){
+                $depart = $_GET['plus'] + 10;
+            }
+            echo $depart;
+            afficher_liste($depart, 10);
+        }
+
+        if($_GET['page'] == 'detailsRecette'){
+            require_once("controller/RecetteController.php");
+            detailRecette($_GET['recette']);
+        }
+
+        if($_GET['page'] == 'listeAdmin'){
+            require_once("controller/RecetteController.php");
+            afficher_recettes_validation();
+        }
+
+        if($_GET['page'] == 'modifier_edito'){
+            //include_once('template/formulaire_edito.php');
+        }
+
+    }else{
+        include 'template/Edito.php';
+    }
+    
     ?>
 
 </body>

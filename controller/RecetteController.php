@@ -1,5 +1,5 @@
 <?php
-    require_once('modele/RecetteManager.php'); //Récupération du modèle
+    require_once('manager/RecetteManager.php'); //Récupération du modèle
 
     function detailRecette($num){
         $recette = trouver_recette($num);

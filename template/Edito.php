@@ -19,7 +19,7 @@
         <nav>
             <div id="menuPC">
                 <div><a href="index.php">Accueil</a></div>
-                <div><a href="template/nosRecettes.php">Nos Recettes</a></div>
+                <div><a href="index.php?page=liste">Nos Recettes</a></div>
                 <div><a href="template/Filtre.php">Filtres</a></div>
                 <?php
                 if($_SESSION["type"] === 0){
@@ -38,7 +38,7 @@
     </header>
     <div id="menuPortable">
         <div><a href="index.php">Accueil</a></div>
-        <div><a href="template/nosRecettes.php">Nos Recettes</a></div>
+        <div><a href="index.php?page=liste">Nos Recettes</a></div>
         <div><a href="template/Filtre.php">Filtres</a></div>
         <?php
         if($_SESSION["type"] === 0){
