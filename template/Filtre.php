@@ -14,12 +14,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <script src="../js/app.js" defer></script>
+    <script src="../js/filtre.js" defer></script>
     <title>PtiCuisto</title>
 </head>
 <body>
     <?php 
-        echo $_SESSION["type"];
         include "header.php";
     ?>
 
