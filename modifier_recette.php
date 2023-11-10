@@ -15,7 +15,7 @@
         require("connexion.php");
 
         $reponse = $bdd->query("SELECT rec_id, titre, rec_resume, rec_image, categorie_id, contenu from RECETTE join CATEGORIE using(categorie_id) where rec_id = " . $num . ";");
-
+        //selectionne les informations de la recette
         $retour = array();
 
         while ($donnees = $reponse->fetch()){
@@ -26,8 +26,7 @@
             $retour['contenu'] = $donnees['contenu'];
             $retour['rec_id'] = $donnees['rec_id'];
         }
-        echo $retour['categorie'];
-        return $retour;
+        return $retour;//retourne les informations de la recette
 
     }
     
@@ -51,10 +50,10 @@
 
     <h3>Ajouter des Ingrédients :</h3>
         <div id="ingredientList">
-            <!--<input type="text" name="ingredient1" placeholder="Ingrédient 1" required>-->
             <?php
+            //affiche les ingrédients de la recette
                 require("connexion.php");
-                $reqIngredients = $bdd->prepare('SELECT INGREDIENT_ID, ING_INTITULE FROM INGREDIENT JOIN CONTENIR USING(INGREDIENT_ID) WHERE REC_ID = ?');
+                $reqIngredients = $bdd->prepare('SELECT INGREDIENT_ID, ING_INTITULE FROM INGREDIENT JOIN CONTENIR USING(INGREDIENT_ID) WHERE REC_ID = ?');//selectionne tout les ingrédients de la recette
                 $reqIngredients->execute(array(28));
                 $ingredients = $reqIngredients->fetchAll();
                 $i=1;
@@ -66,11 +65,7 @@
         </div>
         <br><br>
         <input type="submit" value="Soumettre la Recette">
-    </form>
-
-
-
-    
+    </form>  
 </body>
 </html>
 
