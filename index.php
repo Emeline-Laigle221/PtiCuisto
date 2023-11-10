@@ -52,7 +52,7 @@ session_start();
         }
 
         if($_GET['page'] == 'modifier_edito'){
-            //include_once('template/formulaire_edito.php');
+            include_once('template/formulaire_edito.php');
         }
 
     }else{

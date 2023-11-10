@@ -69,18 +69,10 @@
             
             <div class="edito dernieres-recettes">
                 <h1>LES DERNIÈRE RECETTES</h1>
-                <div>
-                    <img src="img/accueil.jpg" alt="recette1">
-                    <p class="recette-acceuil">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum vel harum odit?</p>
-                </div>
-                <div>
-                    <img src="img/accueil.jpg" alt="recette2">
-                    <p class="recette-acceuil">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et porro ratione adipisci?</p>
-                </div>
-                <div>
-                    <img src="img/accueil.jpg" alt="recette3">
-                    <p class="recette-acceuil">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore dolorem nostrum nisi.</p>
-                </div>
+                <?php
+                    include('controller/RecetteController.php');
+                    afficher_recettes_accueil();
+                ?>
             </div>
         </div>
     </main>

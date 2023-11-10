@@ -57,4 +57,21 @@
         }
         echo '<table/>';
     }
+
+    function afficher_recettes_accueil(){
+        $recettes = liste();
+        echo 
+        '<div>
+        <img src="' . $recettes[1]['rec_image'] . '" alt="recette1">
+        <p class="recette-acceuil">' . $recettes[1]['rec_resume']  . '</p>
+        </div>
+        <div>
+            <img src="' . $recettes[2]['rec_image'] . '" alt="recette1">
+            <p class="recette-acceuil">' . $recettes[2]['rec_resume']  . '</p>
+        </div>
+        <div>
+            <img src="' . $recettes[3]['rec_image'] . '" alt="recette1">
+            <p class="recette-acceuil">' . $recettes[3]['rec_resume']  . '</p>
+        </div>';
+    }
 ?>
