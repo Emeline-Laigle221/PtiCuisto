@@ -24,12 +24,12 @@
         if (strpos($post['lien_image'], $siteUnsplash) !== false) {
             echo "L'URL de l'image provient d'Unsplash.";
             $req = $bdd->prepare('UPDATE `RECETTE` SET `TITRE`= ?,`REC_RESUME`=?,`REC_IMAGE`=?,`DATE_MODIFICATION`=NOW(),`CONTENU`=?,`REC_VALIDATION`=0,`CATEGORIE_ID`=?,`UTI_ID`=? WHERE REC_ID=?');
-            if ($req->execute(array(strip_tags($post['titre_recette']),strip_tags($post['resume_de_la_recette']),strip_tags($post['lien_image']),strip_tags($post['contenu_de_la_recette']),$post['categorie'],$_SESSION['pseudo']),$num_recette)) {
+            if ($req->execute(array(strip_tags($post['titre_recette']),strip_tags($post['resume_de_la_recette']),strip_tags($post['lien_image']),strip_tags($post['contenu_de_la_recette']),$post['categorie'],$_SESSION['pseudo'],$num_recette))) {
                 $rowCount = $req->rowCount();
                 if ($rowCount > 0) {
-                    echo "L'insertion dans la table RECETTE s'est bien déroulée. Nombre de lignes affectées : " . $rowCount;
+                    echo "Update dans la table RECETTE s'est bien déroulée. Nombre de lignes affectées : " . $rowCount;
                 } else {
-                    echo "L'insertion dans la table RECETTE n'a pas affecté de lignes.";
+                    echo "Update dans la table RECETTE n'a pas affecté de lignes.";
                 }
             } else {
                 echo "Erreur lors de l'exécution de la requête.";
@@ -63,7 +63,7 @@
                 $req->execute(array($ingredientName,$num_recette));
                 //verifie si l'ingrédient est déjà dans la recette
                 $reponse = $req->fetch();
-                echo $reponse['COUNT(INGREDIENT_ID)'];
+                echo 'resultat requete'.$reponse['COUNT(INGREDIENT_ID)'];
                 if($reponse['COUNT(INGREDIENT_ID)']>1){
                     echo "Erreur cette ingrédient est deux fois dans la recette";
                 }
@@ -86,17 +86,52 @@
                     $req2 = $bdd->prepare('SELECT INGREDIENT_ID from INGREDIENT where ING_INTITULE=? ;');
                     $req2->execute([$ingredientName]);
                     $reponse2 = $req2->fetch();
-                    echo $reponse2['INGREDIENT_ID'];
+                    echo 'numero ingredient'.$reponse2['INGREDIENT_ID'];
                     if($reponse2['INGREDIENT_ID']){
                         $req3 = $bdd->prepare('INSERT INTO CONTENIR (REC_ID,INGREDIENT_ID) VALUES(?,?)');
-                        $req3->execute(array($MaxIDRecette['MAX(REC_ID)+1'],$reponse2['INGREDIENT_ID'])); 
+                        $req3->execute(array(28,$reponse2['INGREDIENT_ID'])); 
                         //ajoute l'ingrédient à la recette
                     }
                 }
             }
 
+            
+
         } else {
             echo "Ce script ne doit être accessible que via une requête POST.";
+        }
+
+        // Récupérer les ingrédients actuels de la recette
+        $reqIngredientsActuels = $bdd->prepare('SELECT INGREDIENT_ID, ING_INTITULE FROM INGREDIENT JOIN CONTENIR USING(INGREDIENT_ID) WHERE REC_ID = ?');
+        $reqIngredientsActuels->execute([$num_recette]);
+        $ingredientsActuels = $reqIngredientsActuels->fetchAll();
+
+        // Tableau pour stocker les ingrédients postés
+        $ingredientsPostes = [];
+
+        // Parcourir les données postées pour récupérer les ingrédients
+        foreach ($post as $key => $value) {
+            if (strpos($key, "ingredient") === 0) {
+                $ingredientsPostes[] = $value;
+            }
+        }
+
+        // Parcourir les ingrédients actuels
+        foreach ($ingredientsActuels as $ingredientActuel) {
+            $ingredientIDActuel = $ingredientActuel['INGREDIENT_ID'];
+            $ingredientIntituleActuel = $ingredientActuel['ING_INTITULE'];
+
+            // Vérifier si l'ingrédient actuel n'est pas dans les ingrédients postés
+            if (!in_array($ingredientIntituleActuel, $ingredientsPostes)) {
+                // Supprimer l'ingrédient de la recette
+                $reqSupprimerIngredient = $bdd->prepare('DELETE FROM CONTENIR WHERE REC_ID = ? AND INGREDIENT_ID = ?');
+                $reqSupprimerIngredient->execute([$num_recette, $ingredientIDActuel]);
+
+                // Vous pouvez également supprimer l'ingrédient s'il n'est utilisé dans aucune autre recette
+                // Cela dépend de votre logique d'application
+
+                echo "L'ingrédient \"$ingredientIntituleActuel\" a été supprimé de la recette.";
+            }
         }
     }
 
@@ -116,7 +151,7 @@
 
 
     else{
-        modifier_recette_recette($_POST,22);
+        modifier_recette($_POST,28);
     }
 
 
