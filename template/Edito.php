@@ -61,7 +61,10 @@
                 <div class="image-edito">
                     <img src="img/Pticuisto.png" alt="Pticuisto">
                 </div>
-                <p class="texte-edito">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente mollitia id incidunt ratione neque laborum optio, eaque debitis. Atque eum ratione, dolores similique earum asperiores in necessitatibus rem illum cum.</p>
+                <?php
+                    include("controller/EditoController.php");
+                    afficher_edito();
+                ?>
             </div>
             
             <div class="edito dernieres-recettes">
