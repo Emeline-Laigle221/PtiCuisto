@@ -1,12 +1,11 @@
-<?php
-    //include_once() Inclure la où il y a variable session 
-    //gerer le recette_id de façon automatique et la récupération de la valeur du select
+<?php 
 
-    
+
+    //normalement tu m'est pas le session_start et la variable de session mais la variable de session qui contient le numéro de l'utilisateur connecté qu'à du créer maxime lors de la connexion.
     session_start();
     
 
-    $_SESSION['pseudo'] = 21;
+    $_SESSION['pseudo'] = 21; //donc change cette variable par la bonne de maxime dans mon code 
 
 
     function ajout_recette($post) {
@@ -58,24 +57,19 @@
             for ($i = 1; $i <= $ingredientCount; $i++) {
                 // Accédez aux données de chaque champ d'ingrédient en utilisant l'index de la boucle
                 $ingredientName = $post["ingredient" . $i];
-                echo var_dump($ingredientName);
                 $req= $bdd->prepare('SELECT COUNT(INGREDIENT_ID) FROM INGREDIENT WHERE ING_INTITULE=?;');
                 $req->execute([$ingredientName]);
                 $reponse = $req->fetch();
-                echo $reponse['COUNT(INGREDIENT_ID)'];
                 if($reponse['COUNT(INGREDIENT_ID)']>1){
                     echo "Erreur plus de une ligne de cette ingrédient dans la table";
                 }
                 elseif ($reponse['COUNT(INGREDIENT_ID)']==0) {
-                    echo 'ici';
-                    echo $MaxIDIngredient['MAX(INGREDIENT_ID)+1'];
                     $req = $bdd->prepare('INSERT INTO INGREDIENT(INGREDIENT_ID,ING_INTITULE) VALUES(?,?)');
                     $req->execute(array($MaxIDIngredient['MAX(INGREDIENT_ID)+1'],$ingredientName));
                 }
                 $req2 = $bdd->prepare('SELECT INGREDIENT_ID from INGREDIENT where ING_INTITULE=? ;');
                 $req2->execute([$ingredientName]);
                 $reponse2 = $req2->fetch();
-                echo $reponse2['INGREDIENT_ID'];
                 if($reponse2['INGREDIENT_ID']){
                     $req3 = $bdd->prepare('INSERT INTO CONTENIR (REC_ID,INGREDIENT_ID) VALUES(?,?)');
                     $req3->execute(array($MaxIDRecette['MAX(REC_ID)+1'],$reponse2['INGREDIENT_ID'])); 
@@ -86,6 +80,9 @@
             echo "Ce script ne doit être accessible que via une requête POST.";
         }
     }
+
+
+    //teste coté client avant l'appel de la fonction
 
     if(!isset($_POST['titre_recette'])){
         echo "le titre de la recette est vide";

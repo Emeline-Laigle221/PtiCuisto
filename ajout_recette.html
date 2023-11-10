@@ -10,14 +10,14 @@
 <body>
     <form id="monFormulaire" action="traitement_ajout_recette.php" method="post" onsubmit="return validerFormulaire()" >
     <h3>Informations sur la recette :</h3>
-        <input type="text" name="titre recette" id="titre_recette" required>
         <label for="titre recette"> Titre de la recette</label>
-        <input type="text" name="resume de la recette" id="resume_de_la_recette" required>
+        <input type="text" name="titre recette" id="titre_recette" required>
         <label for="resume de la recette"> Resume de la recette</label>
-        <input type="text" name="lien_image" id="lien_image" required>
+        <input type="text" name="resume de la recette" id="resume_de_la_recette" required>
         <label for="lien_image"> lien de l'image</label>
-        <input type="text" name="contenu_de_la_recette" id="contenu_de_la_recette" required>
+        <input type="text" name="lien_image" id="lien_image" required>
         <label for="contenu_de_la_recette"> Contenu de la recette</label>
+        <input type="text" name="contenu_de_la_recette" id="contenu_de_la_recette" required>
         <label for="categorie">Choisissez la catégorie de votre recette : </label>
             <select name="categorie" id="categorie">
                 <option value=1>Entrée</option>
@@ -34,7 +34,6 @@
         <br><br>
         <input type="submit" value="Soumettre la Recette">
     </form>
-
     <script>
         // Écoute l'événement de clic sur le bouton "Ajouter un Ingrédient"
         document.getElementById("addIngredient").addEventListener("click", function() {
@@ -51,6 +50,9 @@
                 ingredientList.appendChild(newInput);
             }
         });
+
+        
+    
 
         function validerFormulaire(){
             let titre_recette=document.getElementById("titre_recette").value;
@@ -86,26 +88,12 @@
             $siteUnsplash = "images.unsplash.com";
             var url=new URL(lien_image);
             var urlDomain=url.hostname;
-            console.log(urlDomain);
             if(!(urlDomain===$siteUnsplash)){
                 alert("le lien de l'image ne provient pas du site unsplash");
                 return false;
             }
             return true;
         }
-
-        /*document.getElementById("monFormulaire").addEventListener("submit", function(event) {
-            event.preventDefault();
-            try{
-                if(validerFormulaire()){
-                    //Soumettre le formulaire si la validation réussit
-                    document.getElementById("monFormulaire").submit();
-                }
-            }catch(erreur){
-                //Gérer l'erreur et afficher unmessage à l'utilisateur 
-                alert("Une erreur est survenue:" + erreur.message);
-            }
-        });*/
 
         
     </script>
