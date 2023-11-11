@@ -39,6 +39,16 @@ nav{
     margin: 20px;
 }
 
+.burger-hidden{
+    display: none;
+}
+
+#menuPortable > div > a {
+    display: block;
+    width: 100vw;
+    text-align: center;
+}
+
 .menuPortable{
     font-family: 'Pacifico', cursive;
     background-color: #7890cd;
@@ -129,6 +139,23 @@ footer{
     color: white;
     overflow-wrap: normal;
     font-size: 28px;
+}
+
+.btn-edito{
+    margin: auto;
+    background-color: #7890cd;
+    width: 40vw;
+    padding: 7px 10px;
+    font-size: 24px;
+    margin-top: 10px;
+    display: block;
+    height: fit-content;
+    min-width: 150px;
+    cursor: pointer;
+    font-family: "Pacifico";
+    color: white;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.4) 5px 5px 5px;
 }
 
 .dernieres-recettes{
@@ -406,10 +433,6 @@ footer{
 
 @media screen and (max-width : 767px){
 
-    .burger-hidden{
-        display: none;
-    }
-
     header > img{
         width: 182px;
         height: 69px;
@@ -422,10 +445,11 @@ footer{
     }
     
     .bar {
-        width: 90px;
-        height: 12px;
+        width: 45px;
+        height: 7px;
         background-color: #fff;
-        margin: 12px 0;
+        margin: 6px 0;
+        border-radius: 50px;
     }
 
     html, body , body > *{
@@ -489,5 +513,9 @@ footer{
 
     .modal-btn{
         margin: 25px auto;
+    }
+
+    .modal{
+        width: 50vw;
     }
 }
