@@ -55,6 +55,19 @@ session_start();
             include_once('template/formulaire_edito.php');
         }
 
+        if($_GET['page'] == 'connexion'){
+            include_once('template/page-connexion.php');
+        }
+
+        if($_GET['page'] == 'inscription'){
+            if(isset($_GET['formulaire'])){
+                require_once("controller/traitement_inscription.php");
+                var_dump($_POST);
+                traiter_inscription();
+            }
+            include_once('template/page-inscription.php');
+        }
+
     }else{
         include 'template/Edito.php';
     }

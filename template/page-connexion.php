@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -42,7 +39,7 @@ session_start();
                         </div>
                         <div>
                             <button class="btn">
-                                <a href="page-inscription.php">S'inscrire</a>
+                                <a href="index.php?page=inscription">S'inscrire</a>
                             </button>
                         </div>
                     </div>

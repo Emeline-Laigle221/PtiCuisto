@@ -1,4 +1,3 @@
-<?php session_start();?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -16,7 +15,7 @@
 </head>
 
 <body>
-    <?php include "header.php" ?>
+    <?php include("header.php"); ?>
 
     <main>
         <div class="connexion">
@@ -24,7 +23,7 @@
                 <h3>Inscription</h3>
             </div>
             <div class="connect-p2">
-                <form action="../controller/traitement_inscription.php" method="post">
+                <form action="index.php?page=inscription&formulaire=true" method="post">
                     <div class="input">
                         <?php
                         if (isset($_GET['error'])) {
@@ -57,7 +56,7 @@
                         <button class="btn" type="submit">S'incrire</button>
                         <div class="btn-container">
                             <button class="link">
-                                <a href="page-connexion.php">J'ai déjà un compte</a>
+                                <a href="index.php?page=connexion">J'ai déjà un compte</a>
                                 <br>
                             </button>
                         </div>
@@ -67,7 +66,7 @@
         </div>
     </main>
 
-    <?php include "footer.php" ?>
+    <?php include("footer.php");?>
 </body>
 
 </html>

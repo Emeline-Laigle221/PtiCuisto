@@ -23,7 +23,7 @@
                 <div><a href="template/Filtre.php">Filtres</a></div>
                 <?php
                 if($_SESSION["type"] === 0){
-                    echo"<div><a href=\"template/page-connexion.php\">Connexion</a></div>";
+                    echo"<div><a href=\"index.php?page=connexion\">Connexion</a></div>";
                 }else{
                     echo "<div><a href=\"controller/traitement_deconnexion.php\">Déconnexion</a></div>";
                 }
@@ -42,7 +42,7 @@
         <div><a href="template/Filtre.php">Filtres</a></div>
         <?php
         if($_SESSION["type"] === 0){
-            echo"<div><a href=\"template/page-connexion.php\">Connexion</a></div>";
+            echo"<div><a href=\"index.php?page=connexion\">Connexion</a></div>";
         }else{
             echo "<div><a href=\"controller/traitement_deconnexion.php\">Déconnexion</a></div>";
         }

@@ -22,7 +22,7 @@
             <div class="bar"></div>
         </div>
     </nav>
-    <script src="../js/burger.js" defer></script>
+    <script src="js/burger.js" defer></script>
 </header>
 <div id="menuPortable">
     <div><a href="../index.php">Accueil</a></div>
