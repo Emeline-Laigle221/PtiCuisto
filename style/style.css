@@ -61,7 +61,7 @@ footer{
     margin: 5px 5px 0px 5px;
 }
 
-/* Style Edito */
+/* ----------------------------- Style Edito ----------------------------- */
 
 .accueil{
     display: flex;
@@ -135,7 +135,7 @@ footer{
 }
 
 
-/* Style Filtres */
+/* ----------------------------- Style Filtres ----------------------------- */
 
 .filtre-container{
     display: flex;
@@ -184,6 +184,7 @@ footer{
 }
 
 .modal{
+    margin-top: 50px;
     opacity: 0;
     width: 95%;
     max-width: 500px;
@@ -234,13 +235,77 @@ footer{
     font-weight: 500;
 }
 
-/* Style Recettes */
+.list-ingredient{
+    overflow: scroll;
+    max-height:50vh;
+}
+
+.check{
+    margin: 5px;
+}
+
+/* ----------------------------- Style Carte Recettes ----------------------------- */
+
+.recette{
+    width: 60vw;
+    height: 40vh;
+    margin: auto;
+    margin-top: 10vh;
+    padding: 10px;
+    border: #7890cd 3px solid;
+    border-radius: 10px;
+    color: #7890cd;
+    font-family: "Pacifico";
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.image-recette > img{
+    width: 375px;
+    height: 225px;
+}
+
+.info-recette{
+    width: 370px;
+    height: max-content;
+    margin: 20px;
+}
+
+.titre-recette{
+    font-family: "Permanent Marker";
+}
+
+.tags{
+    width: 345px;
+    height: max-content;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tag{
+    background-color: #7890cd;
+    border-radius: 10px;
+    color: white;
+    padding: 10px 40px;
+    margin: 10px;
+}
+
+/* --------------------------- Style Nos Recette -------------------------- */
+
+.ajout{
+    margin-left: 2vw;
+}
+
+/* ----------------------------- Style Recette ---------------------------- */
 
 
-/* Style Connexion */
+
+/* ----------------------------- Style Connexion -------------------------- */
 
 .connexion{
-    margin: 100px auto;
+    margin: 5vh auto;
     width: 500px;
     font-family: "Pacifico";
     color: white;
@@ -264,6 +329,10 @@ footer{
     font-size: larger;
 }
 
+.btn-container{
+    height: 60px;
+}
+
 .btn{
     padding: 7px 10px;
     font-size: 24px;
@@ -271,6 +340,7 @@ footer{
     display: block;
     height: fit-content;
     min-width: 150px;
+    width: 15vw;
     cursor: pointer;
     background-color: #2a3990;
     font-family: "Pacifico";
@@ -285,4 +355,30 @@ footer{
     width: fit-content;
     gap: 10px;
     flex-direction: column;
+}
+
+.link{
+    padding: 3px 5px;
+    font-size: 18px;
+    margin-top: 10px;
+    display: block;
+    height: fit-content;
+    min-width: 125px;
+    cursor: pointer;
+    background-color: #2a3990;
+    font-family: "Pacifico";
+    color: white;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.4) 5px 5px 5px;
+}
+
+/* .input{
+    display: flex;
+} */
+
+
+/*----------------------------- RESPONSIVE : TELEPHONE ------------------------*/
+
+@media screen and (max-width : 480px){
+
 }

@@ -82,22 +82,17 @@
                     <button class="close-modal ingredient">X</button>
                     <h1>Ingrédients</h1>
                     <form action="" method="post">
-
-                        <input type="checkbox" name="tomate" id="tomate">
-                        <label for="tomate">Tomate</label>
-                        <br>
-                        <input type="checkbox" name="concombre" id="concombre">
-                        <label for="concombre">Concombre</label>
-                        <br>
-                        <input type="checkbox" name="champignon" id="champignon">
-                        <label for="champignon">Champignon</label>
-                        <br>
-                        <input type="checkbox" name="porc" id="porc">
-                        <label for="porc">Porc</label>
-                        <br>
-                        <input type="checkbox" name="poulet" id="poulet">
-                        <label for="poulet">Poulet</label>
-                        <br>
+                        <div class="list-ingredient">
+                            <?php
+                            $query = $bdd->prepare('SELECT ING_INTITULE FROM INGREDIENT');
+                            $query->execute();
+                            while($row = $query->fetch()){
+                                echo '<input type="checkbox" name="'.$row["ING_INTITULE"].'" id="'.$row["ING_INTITULE"].'">';
+                                echo '<label for="'.$row["ING_INTITULE"].'">'.$row["ING_INTITULE"].'</label>';
+                                echo "<br>";
+                            }
+                            ?>
+                        </div>
                         <input class="valider" value="Valider" type="submit" name="valider-ingredients" id="valider-ingredients">
                     </form>
                 </div>
@@ -110,6 +105,8 @@
             // Initialisation des filtres
             $categoryFilter = ''; // Filtre de catégorie
             $ingredientFilter = ''; // Filtre d'ingrédients
+            $titreFilter = ''; // Filtre de titre
+            $titreValue = '';
 
             if (isset($_POST['valider-categorie'])) {
                 // Traitement des catégories
@@ -134,35 +131,30 @@
                 $titreFilter = 'TITRE LIKE :titre';
                 $titreValue = '%' . $_POST['titre'] . '%';
             }
-
+            
             if (isset($_POST['valider-ingredients'])) {
-                // Traitement des ingrédients
-                $ingredients = [];
-
-                if (isset($_POST['tomate'])) {
-                    $ingredients[] = 'Tomate';
+                // Initialisez un tableau pour stocker les conditions d'ingrédients sélectionnés
+                $selectedIngredients = [];
+                // Boucle à travers les ingrédients disponibles dans la base de données
+                $query = $bdd->prepare('SELECT ING_INTITULE FROM INGREDIENT');
+                $query->execute();
+                while ($row = $query->fetch()) {
+                    // Vérifiez si la case à cocher de l'ingrédient est cochée
+                    $ingredientName = $row["ING_INTITULE"];
+                    if (isset($_POST[$ingredientName])) {
+                        // Ajoutez cette condition à la liste des ingrédients sélectionnés
+                        $selectedIngredients[] = 'ING_INTITULE = "' . $ingredientName . '"';
+                    }
                 }
-                if (isset($_POST['concombre'])) {
-                    $ingredients[] = 'Concombre';
-                }
-                if (isset($_POST['champignon'])) {
-                    $ingredients[] = 'Champignon';
-                }
-                if (isset($_POST['porc'])) {
-                    $ingredients[] = 'Porc';
-                }
-                if (isset($_POST['poulet'])) {
-                    $ingredients[] = 'Poulet';
-                }
-
-                if (!empty($ingredients)) {
-                    $ingredientFilter = 'ING_INTITULE LIKE "%' . implode('%" AND ING_INTITULE LIKE "%', $ingredients) . '%"';
-                    $ingredientJoin = ' JOIN CONTENIR USING (REC_ID) JOIN INGREDIENT USING (INGREDIENT_ID)';
+            
+                // Construisez la condition d'ingrédients en utilisant OR entre les ingrédients sélectionnés
+                if (!empty($selectedIngredients)) {
+                    $ingredientFilter = '(' . implode(' OR ', $selectedIngredients) . ')';
                 }
             }
 
             // Construction de la requête SQL
-            $sql = 'SELECT * FROM RECETTE';
+            $sql = 'SELECT * FROM RECETTE ';
 
             // Initialisation d'un tableau pour stocker les clauses WHERE
             $whereClauses = [];
@@ -171,12 +163,13 @@
                 $whereClauses[] = $categoryFilter;
             }
 
-            if (!empty($ingredientFilter)) {
-                $whereClauses[] = $ingredientFilter;
-            }
-
             if (!empty($titreFilter)) {
                 $whereClauses[] = $titreFilter;
+            }
+
+            if (!empty($ingredientFilter)) {
+                $whereClauses[] = $ingredientFilter;
+                $sql .=  'JOIN CONTENIR USING (REC_ID) JOIN INGREDIENT USING (INGREDIENT_ID)';
             }
 
             // Si des clauses WHERE ont été ajoutées, combinez-les avec AND
@@ -185,7 +178,6 @@
             }
 
             $query = $bdd->prepare($sql);
-            echo $sql;
 
             // Associez les valeurs aux paramètres de la requête, si nécessaire
             if (isset($titreFilter)) {
@@ -197,11 +189,10 @@
             while ($donnees = $query->fetch()) {
                 echo "ID : " . $donnees['REC_ID'] . "<br>";
                 echo "Titre : " . $donnees['TITRE'] . "<br>";
-            }
+            }   
 
         ?>
     </main>
     <footer></footer>
 </body>
 </html>
-tâche-#3
