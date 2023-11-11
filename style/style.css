@@ -51,6 +51,10 @@ nav{
     font-size: 32px;
 }
 
+nav>div{
+    margin: 20px;
+}
+
 a{
     text-decoration: none;
     color: white;
@@ -489,5 +493,9 @@ footer{
 
     .modal-btn{
         margin: 25px auto;
+    }
+
+    .image_daccueil{
+        margin: auto;
     }
 }
