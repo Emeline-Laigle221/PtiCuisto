@@ -18,7 +18,7 @@ function traiter_inscription(){
                             header("Location: ../template/page-inscription.php?error=true");
                             exit;
                         } else {
-                            if (addUser()) {
+                            if (addUser($nom, $prenom, $pseudo, $email, $password)) {
                                 header("Location: ../index.php");
                                 exit;
                             } else {

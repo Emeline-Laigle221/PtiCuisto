@@ -62,7 +62,6 @@ session_start();
         if($_GET['page'] == 'inscription'){
             if(isset($_GET['formulaire'])){
                 require_once("controller/traitement_inscription.php");
-                var_dump($_POST);
                 traiter_inscription();
             }
             include_once('template/page-inscription.php');

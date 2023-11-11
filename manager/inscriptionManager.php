@@ -14,8 +14,8 @@ function compteIsSet(){
     return $nbUser;
 }
 
-function addUser(){
-    require_once("connexion.php");
+function addUser($nom, $prenom, $pseudo, $email, $password){
+    require("connexion.php");
 
     $query = $bdd->prepare('SELECT COUNT(*) FROM UTILISATEUR');
     $query->execute();
@@ -26,7 +26,8 @@ function addUser(){
     }
     $nbUser = $nbUser + 1;
 
-    $sql = 'INSERT INTO UTILISATEUR VALUES (' . $nbUser . ', \'UTILISATEUR\', \'' . $pseudo . '\',\'' . $email . '\',\'' . $prenom . '\',\'' . $nom . '\', DATE(NOW()), \'Actif\', \'' . $password . '\')';
+    $sql = 'INSERT INTO UTILISATEUR (uti_id, pseudo, adresse_mail, prenom, nom, mdp) VALUES (' . $nbUser . ', \'' . $pseudo . '\',\'' . $email . '\',\'' . $prenom . '\',\'' . $nom . '\', \'' . $password . '\');';
+    echo $sql;
     $insert = $bdd->prepare($sql);
     $insert->execute();
 }
