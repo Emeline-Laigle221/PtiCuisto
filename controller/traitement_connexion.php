@@ -11,7 +11,7 @@ if (isset($_POST["email"])) {
 
         if (compteIsSet($email, $password)) {
             $_SESSION["id"] = getUserId($email, $password);
-            $_SESSION["type"] = 1;
+            $_SESSION["type"] = getUserType($email, $password);
         } else {
             header("Location: ../template/page-connexion.php?error=true");
             exit;

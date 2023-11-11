@@ -2,7 +2,7 @@
 </head>
 
 <header>
-    <img src="../img/Logo.png" alt="Logo">
+    <a href="../index.php"><img src="../img/Logo.png" alt="Logo"></a>
     <nav>
         <div id="menuPC">
             <div><a href="../index.php">Accueil</a></div>

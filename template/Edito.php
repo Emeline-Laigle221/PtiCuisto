@@ -65,6 +65,13 @@
                     include("controller/EditoController.php");
                     afficher_edito();
                 ?>
+                </div> 
+                <p class="texte-edito">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente mollitia id incidunt ratione neque laborum optio, eaque debitis. Atque eum ratione, dolores similique earum asperiores in necessitatibus rem illum cum.</p>
+                <?php
+                if($_SESSION["type"] == 2){
+                    echo "<button class=\"btn-edito\"><a>Modifier l'édito</a></button>";
+                }
+                ?>
             </div>
             
             <div class="edito dernieres-recettes">
