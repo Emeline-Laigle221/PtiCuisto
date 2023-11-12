@@ -1,4 +1,9 @@
 <?php 
+    /**
+     * Fonction pour ajouter une recette à partir du formulaire.
+     * $post : le formulaire remplis.
+     * $id : l'identifiant de l'utilisateur.
+     */
     function ajout_recette($post, $id) {
         include("connexion.php");
         $siteUnsplash = "unsplash.com"; // URL d'Unsplash

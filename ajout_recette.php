@@ -51,7 +51,10 @@
 
         
     
-
+        /**
+         * Fonction vérifiant si le formulaire a été rempli correctement.
+         * Retourne false si il y a un problème, true sinon.
+         */
         function validerFormulaire(){
             let titre_recette=document.getElementById("titre_recette").value;
             let resume_de_la_recette=document.getElementById("resume_de_la_recette").value;
