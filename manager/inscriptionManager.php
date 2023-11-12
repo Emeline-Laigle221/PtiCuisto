@@ -1,5 +1,5 @@
 <?php
-function compteIsSet(){
+function compteIsAlreadySet($nom, $prenom, $pseudo, $email){
     require_once("connexion.php");
 
     $query = $bdd->prepare('SELECT * FROM UTILISATEUR WHERE (NOM = \'' . $nom . '\' and PRENOM = \'' . $prenom . '\') or PSEUDO = \'' . $pseudo . '\' or ADRESSE_MAIL = \'' . $email . '\'');
@@ -9,26 +9,23 @@ function compteIsSet(){
     }else{
         return true;
     }
-
-
-    return $nbUser;
 }
 
 function addUser($nom, $prenom, $pseudo, $email, $password){
     require("connexion.php");
 
-    $query = $bdd->prepare('SELECT COUNT(*) FROM UTILISATEUR');
+    $query = $bdd->prepare('SELECT MAX(UTI_ID) FROM UTILISATEUR');
     $query->execute();
 
     $nbUser = 0;
     while ($row = $query->fetch()) {
-        $nbUser = $row['COUNT(*)'];
+        $nbUser = $row['MAX(UTI_ID)'];
     }
     $nbUser = $nbUser + 1;
 
     $sql = 'INSERT INTO UTILISATEUR (uti_id, pseudo, adresse_mail, prenom, nom, mdp) VALUES (' . $nbUser . ', \'' . $pseudo . '\',\'' . $email . '\',\'' . $prenom . '\',\'' . $nom . '\', \'' . $password . '\');';
-    echo $sql;
     $insert = $bdd->prepare($sql);
     $insert->execute();
+    return true;
 }
 ?>

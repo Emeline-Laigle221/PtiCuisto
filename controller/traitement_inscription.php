@@ -1,5 +1,5 @@
 <?php
-include_once("manager/inscriptionManager.php");
+require_once("manager/inscriptionManager.php");
 
 function traiter_inscription(){
     if (isset($_POST["nom"])) {
@@ -14,12 +14,14 @@ function traiter_inscription(){
                         $password = hash('sha256', $_POST["password"]);
                         unset($_POST);
                         
-                        if (compteIsSet()) {
-                            header("Location: ../template/page-inscription.php?error=true");
+                        if (compteIsAlreadySet($nom, $prenom, $pseudo, $email)) {
+                            echo '<script>window.location.href = "Location: index.php?page=inscription&error=true";</script>';
                             exit;
                         } else {
                             if (addUser($nom, $prenom, $pseudo, $email, $password)) {
-                                header("Location: ../index.php");
+                                // header("Location: index.php");
+                                // exit;
+                                echo '<script>window.location.href = "index.php";</script>';
                                 exit;
                             } else {
                                 echo "Erreur";
