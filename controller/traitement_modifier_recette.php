@@ -18,9 +18,9 @@
         //modification table recette
         if (strpos($post['lien_image'], $siteUnsplash) !== false) {
             echo "L'URL de l'image provient d'Unsplash.";
-            $req = $bdd->prepare('UPDATE `RECETTE` SET `TITRE`= ?,`REC_RESUME`=?,`REC_IMAGE`=?,`DATE_MODIFICATION`=NOW(),`CONTENU`=?,`REC_VALIDATION`=0,`CATEGORIE_ID`=?,`UTI_ID`=? WHERE REC_ID=?');
+            $req = $bdd->prepare('UPDATE `RECETTE` SET `TITRE`= ?,`REC_RESUME`=?,`REC_IMAGE`=?,`DATE_MODIFICATION`=NOW(),`CONTENU`=?,`REC_VALIDATION`=0,`CATEGORIE_ID`=? WHERE REC_ID=?');
             //Mets à jour la table recette
-            if ($req->execute(array(strip_tags($post['titre_recette']),strip_tags($post['resume_de_la_recette']),strip_tags($post['lien_image']),strip_tags($post['contenu_de_la_recette']),$post['categorie'],$_SESSION['id'],$num_recette))) {
+            if ($req->execute(array(strip_tags($post['titre_recette']),strip_tags($post['resume_de_la_recette']),strip_tags($post['lien_image']),strip_tags($post['contenu_de_la_recette']),$post['categorie'],$num_recette))) {
                 $rowCount = $req->rowCount();
                 if ($rowCount > 0) {
                     echo "Update dans la table RECETTE s'est bien déroulée. Nombre de lignes affectées : " . $rowCount;
@@ -137,7 +137,7 @@
 
 
     else{
-        modifier_recette($_POST,28);
+        modifier_recette($_POST, $_GET['recette']);
     }
 
 

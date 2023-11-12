@@ -50,35 +50,71 @@ require_once('manager/RecetteManager.php'); //Récupération du modèle
 
 /**
  * Fonction pour la page "Nos recettes"
- * le paramère $depart indique où on en est de la liste (utilisation du bouton "Plus" pour avancer de 10 en 10)
+ * le paramètre $depart indique où on en est de la liste (utilisation du bouton "Plus" pour avancer de 10 en 10)
  */
 function afficher_liste($depart, $nb)
 {
-    echo '<div><div><a class="btn ajout" href="index.php?page=liste&depart=' . ($depart + 10) . '">Plus</a></div>';
-    if ($depart != 0) {
-        echo '<div><a class="btn ajout" href="index.php?page=liste&depart=' . ($depart - 10) . '">Moins</a><div>';
+    if(!isset($_SESSION['type']) || $_SESSION['type'] != '2'){
+        $recettes = liste();
+        if($depart + 10 < count($recettes)){
+            echo '<div><div><a class="btn ajout" href="index.php?page=liste&depart=' . ($depart + 10) . '">Plus</a></div>';
+        }
+        
+        if ($depart != 0) {
+            echo '<div><a class="btn ajout" href="index.php?page=liste&depart=' . ($depart - 10) . '">Moins</a><div>';
+        }
+        echo "</div>";
+        
+        for ($i = $depart; $i < $depart + $nb && $i < count($recettes); $i++) {
+            echo"
+                <div class=\"carte-recette\">
+                    <div class=\"image-recette\">
+                        <a href\"index.php?page=detailsRecette&recette=" . $recettes[$i]['rec_id'] . "\"><img src=\"" . $recettes[$i]['rec_image'] . "\" alt=\"image de la recette\"></img></a>
+                    </div>
+                    
+                    <div class=\"titre-recette\">
+                        <a href=\"index.php?page=detailsRecette&recette=" . $recettes[$i]['rec_id'] . "\">" . $recettes[$i]['titre'] . "</a>
+                    </div>
+                    <div class=\"cat-recette\">
+                        <p>". $recettes[$i]['categorie'] ."</p>
+                    </div>
+                    <div class=\"resume-recette\">
+                        <p>". $recettes[$i]['rec_resume'] ."</p>
+                    </div>
+                </div>
+            ";
+        }
+    }else{
+        $recettes = liste_totale();
+        if($depart + 10 < count($recettes)){
+            echo '<div><div><a class="btn ajout" href="index.php?page=liste&depart=' . ($depart + 10) . '">Plus</a></div>';
+        }
+        
+        if ($depart != 0) {
+            echo '<div><a class="btn ajout" href="index.php?page=liste&depart=' . ($depart - 10) . '">Moins</a><div>';
+        }
+        echo "</div>";
+        for ($i = $depart; $i < $depart + $nb && $i < count($recettes); $i++) {
+            echo"
+                <div class=\"carte-recette\">
+                    <div class=\"image-recette\">
+                        <a href\"index.php?page=detailsRecette&recette=" . $recettes[$i]['rec_id'] . "\"><img src=\"" . $recettes[$i]['rec_image'] . "\" alt=\"image de la recette\"></img></a>
+                    </div>
+                    
+                    <div class=\"titre-recette\">
+                        <a href=\"index.php?page=detailsRecette&recette=" . $recettes[$i]['rec_id'] . "\">" . $recettes[$i]['titre'] . "</a>
+                    </div>
+                    <div class=\"cat-recette\">
+                        <p>". $recettes[$i]['categorie'] ."</p>
+                    </div>
+                    <div class=\"resume-recette\">
+                        <p>". $recettes[$i]['rec_resume'] ."</p>
+                    </div>
+                </div>
+            ";
+        }
     }
-    echo "</div>";
-    $recettes = liste();
-    for ($i = $depart; $i < $depart + $nb && $i < count($recettes); $i++) {
-        echo"
-            <div class=\"carte-recette\">
-                <div class=\"image-recette\">
-                    <a href\"index.php?page=detailsRecette&recette=" . $recettes[$i]['rec_id'] . "\"><img src=\"" . $recettes[$i]['rec_image'] . "\" alt=\"image de la recette\"></img></a>
-                </div>
-                
-                <div class=\"titre-recette\">
-                    <a href=\"index.php?page=detailsRecette&recette=" . $recettes[$i]['rec_id'] . "\">" . $recettes[$i]['titre'] . "</a>
-                </div>
-                <div class=\"cat-recette\">
-                    <p>". $recettes[$i]['categorie'] ."</p>
-                </div>
-                <div class=\"resume-recette\">
-                    <p>". $recettes[$i]['rec_resume'] ."</p>
-                </div>
-            </div>
-        ";
-    }
+    
     
 }
 
