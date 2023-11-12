@@ -31,12 +31,19 @@ require_once('manager/RecetteManager.php'); //Récupération du modèle
  */
 function afficher_liste($depart, $nb)
 {
-    echo '<div><div><a class="btn ajout" href="index.php?page=liste&depart=' . ($depart + 10) . '">Plus</a></div>';
+    if(!isset($_SESSION['type']){
+        
+    }
+    $recettes = liste();
+    if($depart + 10 < count($recettes)){
+        echo '<div><div><a class="btn ajout" href="index.php?page=liste&depart=' . ($depart + 10) . '">Plus</a></div>';
+    }
+    
     if ($depart != 0) {
         echo '<div><a class="btn ajout" href="index.php?page=liste&depart=' . ($depart - 10) . '">Moins</a><div>';
     }
     echo "</div>";
-    $recettes = liste();
+    
     for ($i = $depart; $i < $depart + $nb && $i < count($recettes); $i++) {
         echo"
             <div class=\"carte-recette\">
