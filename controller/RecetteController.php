@@ -79,7 +79,7 @@
         $recettes = liste_proprietaire($_SESSION['id']);
         echo '<table>';
         for($i = 0; $i < count($recettes); $i++){ 
-            echo '<tr> <td> <a href="index.php?page=detailsRecette&recette=' . $recettes[$i]['rec_id'] . '">' . $recettes[$i]['titre'] . '</a><td/><td>' . $recettes[$i]['categorie'] . '<td/><td>' . $recettes[$i]['rec_resume']  . '<td/>' . '<td>' . '<a href="index.php?page=detailsRecette&recette=' . $recettes[$i]['rec_id'] . '"><img src=' . $recettes[$i]['rec_image'] . 'alt="image de la recette">' . '</img></a><td/><td> <a href="index.php?page=modifRecette&recette=' . $recettes[$i]['rec_id'] . '">Modifier la recette</a><tr/>';
+            echo '<tr> <td> <a href="index.php?page=detailsRecette&recette=' . $recettes[$i]['rec_id'] . '">' . $recettes[$i]['titre'] . '</a><td/><td>' . $recettes[$i]['categorie'] . '<td/><td>' . $recettes[$i]['rec_resume']  . '<td/>' . '<td>' . '<a href="index.php?page=detailsRecette&recette=' . $recettes[$i]['rec_id'] . '"><img src=' . $recettes[$i]['rec_image'] . 'alt="image de la recette">' . '</img></a><td/><td> <a href="index.php?page=modifierRecette&recette=' . $recettes[$i]['rec_id'] . '">Modifier la recette</a><tr/>';
             echo '<br>';
         }
         echo '<table/>';

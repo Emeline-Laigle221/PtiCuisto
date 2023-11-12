@@ -2,8 +2,6 @@
     if(!isset($_SESSION)){
         session_start();
     }
-    echo 'session :';
-    var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -60,6 +58,14 @@
                 include("traitement_ajout_recette.php");
             }else{
                 include("ajout_recette.php");
+            }
+        }
+
+        if($_GET['page'] == 'modifierRecette'){
+            if(isset($_GET['formulaire'])){
+                include("traitement_modifier_recette.php");
+            }else{
+                include("modifier_recette.php");
             }
         }
 
