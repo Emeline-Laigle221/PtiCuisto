@@ -1,4 +1,3 @@
-
 <?php
 
 $dotenv = fopen('.env', 'r');
