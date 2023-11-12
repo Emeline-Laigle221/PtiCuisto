@@ -110,6 +110,12 @@ function afficher_liste($depart, $nb)
                     <div class=\"resume-recette\">
                         <p>". $recettes[$i]['rec_resume'] ."</p>
                     </div>
+                    <div class=\"bouton-modifier\">
+                        <a href=\"index.php?page=modifierRecette&recette=". $recettes[$i]['rec_id'] ."\">Modifier</a>
+                    </div>
+                    <div class=\"bouton-supprimer\">
+                        <a href=\"index.php?page=liste&suppression=". $recettes[$i]['rec_id'] ."\">Supprimer</a>
+                    </div>
                 </div>
             ";
         }

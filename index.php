@@ -36,6 +36,9 @@ if (!isset($_SESSION)) {
 
         if ($_GET['page'] == 'liste') {
             require_once("controller/RecetteController.php");
+            if (isset($_GET['suppression'])) {
+                supprimer($_GET['suppression']);
+            }
             $depart = 0;
             if (isset($_GET['depart'])) {
                 $depart = $_GET['depart'];
