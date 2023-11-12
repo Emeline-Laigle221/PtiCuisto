@@ -34,7 +34,7 @@ function afficher_liste($depart, $nb)
         echo"
             <div class=\"carte-recette\">
                 <div class=\"image-recette\">
-                    <img src=\"" . $recettes[$i]['rec_image'] . "\" alt=\"image de la recette\"></img>   
+                    <a href\"index.php?page=detailsRecette&recette=" . $recettes[$i]['rec_id'] . "\"><img src=\"" . $recettes[$i]['rec_image'] . "\" alt=\"image de la recette\"></img></a>
                 </div>
                 
                 <div class=\"titre-recette\">
