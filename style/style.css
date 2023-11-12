@@ -398,6 +398,10 @@ footer{
     height: 60px;
 }
 
+.btn-container{
+    height: 60px;
+}
+
 .btn{
     padding: 7px 10px;
     font-size: 24px;

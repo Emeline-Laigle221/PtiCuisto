@@ -1,6 +1,10 @@
 <?php
+    require_once 'connexion.php';
     session_start();
-    require_once("../manager/connexion.php");
+
+    if (!isset($_SESSION['pseudo'])) {
+        $_SESSION['pseudo'] = '';
+    }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -76,10 +80,11 @@
                             <?php
                             $query = $bdd->prepare('SELECT ING_INTITULE FROM INGREDIENT');
                             $query->execute();
-                            while($row = $query->fetch()) {
-                                echo "<input class=\"check\" type=\"checkbox\" name=\"".$row["ING_INTITULE"]."\" id=\"".$row["ING_INTITULE"]."\">";
-                                echo "<label for= \"".$row["ING_INTITULE"]."\">".$row["ING_INTITULE"]."</label>";
-                                echo"<br>";
+                            while($row = $query->fetch()){
+                                echo '<input type="checkbox" name="'.$row["ING_INTITULE"].'" id="'.$row["ING_INTITULE"].'">';
+                                echo '<label for="'.$row["ING_INTITULE"].'">'.$row["ING_INTITULE"].'</label>';
+                                echo "<br>";
+
                             }
                             ?>
                         </div>
@@ -91,6 +96,99 @@
             <button class="modal-btn ingredient">Ingrédients</button>
 
         </div>
+        <?php
+            // Initialisation des filtres
+            $categoryFilter = ''; // Filtre de catégorie
+            $ingredientFilter = ''; // Filtre d'ingrédients
+            $titreFilter = ''; // Filtre de titre
+            $titreValue = '';
+
+            if (isset($_POST['valider-categorie'])) {
+                // Traitement des catégories
+                $categories = [];
+
+                if (isset($_POST['entree'])) {
+                    $categories[] = 1;
+                }
+                if (isset($_POST['plats'])) {
+                    $categories[] = 2;
+                }
+                if (isset($_POST['dessert'])) {
+                    $categories[] = 3;
+                }
+
+                if (!empty($categories)) {
+                    $categoryFilter = 'CATEGORIE_ID IN (' . implode(', ', $categories) . ')';
+                }
+            }
+
+            if (isset($_POST['valider-titre']) && !empty($_POST['titre'])) {
+                $titreFilter = 'TITRE LIKE :titre';
+                $titreValue = '%' . $_POST['titre'] . '%';
+            }
+            
+            if (isset($_POST['valider-ingredients'])) {
+                // Initialisez un tableau pour stocker les conditions d'ingrédients sélectionnés
+                $selectedIngredients = [];
+                // Boucle à travers les ingrédients disponibles dans la base de données
+                $query = $bdd->prepare('SELECT ING_INTITULE FROM INGREDIENT');
+                $query->execute();
+                while ($row = $query->fetch()) {
+                    // Vérifiez si la case à cocher de l'ingrédient est cochée
+                    $ingredientName = $row["ING_INTITULE"];
+                    if (isset($_POST[$ingredientName])) {
+                        // Ajoutez cette condition à la liste des ingrédients sélectionnés
+                        $selectedIngredients[] = 'ING_INTITULE = "' . $ingredientName . '"';
+                    }
+                }
+            
+                // Construisez la condition d'ingrédients en utilisant OR entre les ingrédients sélectionnés
+                if (!empty($selectedIngredients)) {
+                    $ingredientFilter = '(' . implode(' OR ', $selectedIngredients) . ')';
+                }
+            }
+
+            // Construction de la requête SQL
+            $sql = 'SELECT * FROM RECETTE ';
+
+            // Initialisation d'un tableau pour stocker les clauses WHERE
+            $whereClauses = [];
+
+            if (!empty($categoryFilter)) {
+                $whereClauses[] = $categoryFilter;
+            }
+
+            if (!empty($titreFilter)) {
+                $whereClauses[] = $titreFilter;
+            }
+
+            if (!empty($ingredientFilter)) {
+                $whereClauses[] = $ingredientFilter;
+                $sql .=  'JOIN CONTENIR USING (REC_ID) JOIN INGREDIENT USING (INGREDIENT_ID)';
+            }
+
+            // Si des clauses WHERE ont été ajoutées, combinez-les avec AND
+            if (!empty($whereClauses)) {
+                $sql .= ' WHERE ' . implode(' AND ', $whereClauses);
+            }
+
+            $query = $bdd->prepare($sql);
+
+            // Associez les valeurs aux paramètres de la requête, si nécessaire
+            if (isset($titreFilter)) {
+                $query->bindValue(':titre', $titreValue, PDO::PARAM_STR);
+            }
+
+            $query->execute();
+
+            while ($donnees = $query->fetch()) {
+                echo "ID : " . $donnees['REC_ID'] . "<br>";
+                echo "Titre : " . $donnees['TITRE'] . "<br>";
+            }   
+
+        ?>
     </main>
     <?php include "footer.php"?>
 </body>
+</html>
+
