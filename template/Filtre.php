@@ -181,8 +181,24 @@
             $query->execute();
 
             while ($donnees = $query->fetch()) {
-                echo "ID : " . $donnees['REC_ID'] . "<br>";
-                echo "Titre : " . $donnees['TITRE'] . "<br>";
+            
+                echo"
+                <div class=\"carte-recette\">
+                    <div class=\"image-recette\">
+                        <a href\"index.php?page=detailsRecette&recette=" . $donnees['REC_ID'] . "\"><img src=\"" . $donnees['REC_IMAGE'] . "\" alt=\"image de la recette\"></img></a>
+                    </div>
+                    
+                    <div class=\"titre-recette\">
+                        <a href=\"index.php?page=detailsRecette&recette=" . $donnees['REC_ID'] . "\">" . $donnees['TITRE'] . "</a>
+                    </div>
+                    <div class=\"cat-recette\">
+                        <p>". $donnees['CATEGORIE_ID'] ."</p>
+                    </div>
+                    <div class=\"resume-recette\">
+                        <p>". $donnees['REC_RESUME'] ."</p>
+                    </div>
+                </div>
+                ";
             }   
 
         ?>

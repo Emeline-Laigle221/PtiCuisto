@@ -62,19 +62,23 @@ if (!isset($_SESSION)) {
         }
 
         if ($_GET['page'] == 'ajouterRecette') {
+            include('template/header.php');
             if (isset($_GET['formulaire'])) {
-                include("traitement_ajout_recette.php");
+                include("controller/traitement_ajout_recette.php");
             } else {
-                include("ajout_recette.php");
+                include("template/ajout_recette.php");
             }
+            include("template/footer.php");
         }
 
         if ($_GET['page'] == 'modifierRecette') {
+            include('template/header.php');
             if (isset($_GET['formulaire'])) {
-                include("traitement_modifier_recette.php");
+                include("controller/traitement_modifier_recette.php");
             } else {
-                include("modifier_recette.php");
+                include("template/modifier_recette.php");
             }
+            include("template/footer.php");
         }
 
         if ($_GET['page'] == 'listeAdmin') {
