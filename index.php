@@ -46,6 +46,11 @@ session_start();
             detailRecette($_GET['recette']);
         }
 
+        if($_GET['page'] == 'mesrecettes'){
+            require_once("controller/RecetteController.php");
+            afficher_mes_recettes();
+        }
+
         if($_GET['page'] == 'listeAdmin'){
             require_once("controller/RecetteController.php");
             afficher_recettes_validation();
@@ -56,7 +61,11 @@ session_start();
         }
 
         if($_GET['page'] == 'connexion'){
-            include_once('template/page-connexion.php');
+            if(isset($_POST['email'])){
+                include('controller/traitement_connexion.php');
+                traiter_connexion();
+            }
+            include('template/page-connexion.php');
         }
 
         if($_GET['page'] == 'inscription'){

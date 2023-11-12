@@ -13,6 +13,9 @@
                 echo"<div><a href=\"page-connexion.php\">Connexion</a></div>";
             }else{
                 echo "<div><a href=\"../controller/traitement_deconnexion.php\">Déconnexion</a></div>";
+                if($_SESSION["type"] == '1' || $_SESSION["type"] == '2'){
+                    echo "<div><a href=\"index.php?page=mesrecettes\">Mes recettes</a></div>";
+                }
             }
             ?>
         </div>
@@ -33,6 +36,9 @@
         echo"<div><a href=\"page-connexion.php\">Connexion</a></div>";
     }else{
         echo "<div><a href=\"../controller/traitement_deconnexion.php\">Déconnexion</a></div>";
+        if($_SESSION["type"] == '1'){
+            echo "<div><a href=\"index.php?page=mesrecettes\">Mes recettes</a></div>";
+        }
     }
     ?>
 </div>

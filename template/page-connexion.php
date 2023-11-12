@@ -23,7 +23,7 @@
                 <h3>Connexion</h3>
             </div>
             <div class="connect-p2">
-                <form action="../controller/traitement_connexion.php" method="post">
+                <form action="index.php?page=connexion" method="post">
                     <div>
                         <label for="email">Adresse Email :</label>
                         <input type="email" name="email" id="email" placeholder="email@example.com"><br>

@@ -25,7 +25,10 @@
                 if($_SESSION["type"] === 0){
                     echo"<div><a href=\"index.php?page=connexion\">Connexion</a></div>";
                 }else{
-                    echo "<div><a href=\"controller/traitement_deconnexion.php\">Déconnexion</a></div>";
+                    echo "<div><a href=\"../controller/traitement_deconnexion.php\">Déconnexion</a></div>";
+                    if($_SESSION["type"] == '1' || $_SESSION["type"] == '2'){
+                        echo "<div><a href=\"index.php?page=mesrecettes\">Mes recettes</a></div>";
+                    }
                 }
                 ?>
             </div>
@@ -44,7 +47,10 @@
         if($_SESSION["type"] === 0){
             echo"<div><a href=\"index.php?page=connexion\">Connexion</a></div>";
         }else{
-            echo "<div><a href=\"controller/traitement_deconnexion.php\">Déconnexion</a></div>";
+            echo "<div><a href=\"../controller/traitement_deconnexion.php\">Déconnexion</a></div>";
+            if($_SESSION["type"] == '1' || $_SESSION["type"] == '2'){
+                echo "<div><a href=\"index.php?page=mesrecettes\">Mes recettes</a></div>";
+            }
         }
         ?>
     </div>
@@ -69,7 +75,7 @@
                 <p class="texte-edito">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente mollitia id incidunt ratione neque laborum optio, eaque debitis. Atque eum ratione, dolores similique earum asperiores in necessitatibus rem illum cum.</p>
                 <?php
                 if($_SESSION["type"] == 2){
-                    echo "<button class=\"btn-edito\"><a>Modifier l'édito</a></button>";
+                    echo "<button class=\"btn-edito\"><a href=>Modifier l'édito</a></button>";
                 }
                 ?>
             </div>
