@@ -157,6 +157,12 @@ footer{
     font-size: 28px;
 }
 
+.input-edito{
+    width: 20vw;
+    height: 20vh;
+    overflow: auto;
+}
+
 .btn-edito{
     margin: auto;
     background-color: #7890cd;

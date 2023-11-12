@@ -7,21 +7,44 @@ require_once('manager/RecetteManager.php'); //Récupération du modèle
      */
     function detailRecette($num){
         $recette = trouver_recette($num);
-        echo '<h1>' . $recette['titre'] . '</h1>';
-        echo '<img src=' . $recette['rec_image'] . 'alt="image de la recette">';
-        echo '<p>' . $recette['categorie'] . '</p>';
-        echo '<p>' . $recette['rec_resume'] . '</p>';
 
-    $ingredients = lister_ingredients(10);
+        echo"
+            <div class=\"carte-recette\">
+                <div class=\"image-recette\">
+                    <a href\"index.php?page=detailsRecette&recette=" . $recette['rec_id'] . "\"><img src=\"" . $recette['rec_image'] . "\" alt=\"image de la recette\"></img></a>
+                </div>
+                
+                <div class=\"titre-recette\">
+                    <a href=\"index.php?page=detailsRecette&recette=" . $recette['rec_id'] . "\">" . $recette['titre'] . "</a>
+                </div>
+                <div class=\"cat-recette\">
+                    <p>". $recette['categorie'] ."</p>
+                </div>
+                <div class=\"resume-recette\">
+                    <p>". $recette['rec_resume'] ."</p>
+                </div>
+                <div>";
+                    $ingredients = lister_ingredients(10);
+                    echo"<table>";
+                    for ($i = 0; $i < count($ingredients); $i++) {
+                        echo '
+                        <tr>
+                            <td>' . $ingredients[$i]['quantite'] . ' g <td/>
+                            <td>' . $ingredients[$i]['intitule'] . '<td/>
+                            <td>' . $ingredients[$i]['description'] . '<td/>
+                        <tr/>';
+                        echo '<br>';
+                    }
+                    echo "</table>
+                </div>
+                <p>" . $recette['contenu'] . "</p>
+            </div>
+        ";
 
-    echo '<table>';
-    for ($i = 0; $i < count($ingredients); $i++) {
-        echo '<tr> <td>' . $ingredients[$i]['quantite'] . ' g <td/><td>' . $ingredients[$i]['intitule'] . '<td/><td>' . $ingredients[$i]['description'] . '<td/><tr/>';
-        echo '<br>';
-    }
-    echo '<table/>';
+    
 
-    echo '<p>' . $recette['contenu'] . '</p>';
+    
+
 
 }
 

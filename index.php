@@ -37,7 +37,7 @@ if (!isset($_SESSION)) {
         if ($_GET['page'] == 'liste') {
             require_once("controller/RecetteController.php");
             $depart = 0;
-            if (isset($_GET['depart'])){
+            if (isset($_GET['depart'])) {
                 $depart = $_GET['depart'];
             }
             // echo $depart;
@@ -48,13 +48,15 @@ if (!isset($_SESSION)) {
 
         if ($_GET['page'] == 'detailsRecette') {
             require_once("controller/RecetteController.php");
+            include("template/header.php");
             detailRecette($_GET['recette']);
+            include("template/footer.php");
         }
 
         if ($_GET['page'] == 'mesrecettes') {
             require_once("controller/RecetteController.php");
             include "template/header.php";
-            if(isset($_GET['suppression'])){
+            if (isset($_GET['suppression'])) {
                 supprimer($_GET['suppression']);
             }
             afficher_mes_recettes();
@@ -87,14 +89,16 @@ if (!isset($_SESSION)) {
         }
 
         if ($_GET['page'] == 'modifier_edito') {
+            include('template/header.php');
             include_once('template/formulaire_edito.php');
+            include('template/footer.php');
         }
 
         if ($_GET['page'] == 'connexion') {
             if (isset($_POST['email'])) {
                 include('controller/traitement_connexion.php');
                 traiter_connexion();
-                include ('template/Edito.php');
+                include('template/Edito.php');
             }
             include('template/page-connexion.php');
         }
@@ -107,7 +111,7 @@ if (!isset($_SESSION)) {
             include_once('template/page-inscription.php');
         }
 
-        if($_GET['page'] == 'filtre'){
+        if ($_GET['page'] == 'filtre') {
             include_once('template/Filtre.php');
         }
 
