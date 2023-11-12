@@ -54,7 +54,6 @@
         }
         ?>
     </div>
-
     <main>
         <div class="accueil">
             <div class="div-image">
@@ -71,7 +70,7 @@
                     include("controller/EditoController.php");
                     afficher_edito();
                 ?>
-                </div> 
+                <!-- </div>  -->
                 <?php
                 if($_SESSION["type"] == 2){
                     echo "<button class=\"btn-edito\"><a href=index.php?page=modifier_edito>Modifier l'édito</a></button>";
@@ -88,7 +87,6 @@
             </div>
         </div>
     </main>
-
     <footer>
     <div class="reseaux">
         <a target="_blank_" href="https://www.facebook.com" >

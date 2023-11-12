@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 /**
  * Fonction traitant le formulaire de connexion.
  */
@@ -15,12 +15,13 @@ function traiter_connexion(){
             if (compteIsSet($email, $password)) {
                 $_SESSION["id"] = getUserId($email, $password);
                 $_SESSION["type"] = getUserType($email, $password);
+                // var_dump($_SESSION);
             } else {
-                //header("Location: template/page-connexion.php?error=true");
+                echo '<script>window.location.href = "template/page-connexion.php?error=true";</script>';
                 exit;
             }
         }
-        //header("Location: index.php");
+        echo '<script>window.location.href = "index.php";</script>';
         exit;
     } else {
         echo "Ça ne fonctionne pas.";

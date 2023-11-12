@@ -1,7 +1,7 @@
-<?php 
-    if(!isset($_SESSION)){
-        session_start();
-    }
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
 ?>
 
 <!DOCTYPE html>
@@ -31,57 +31,63 @@
     if (!isset($_SESSION["type"])) {
         $_SESSION["type"] = 0;
     }
-    if(isset($_GET['page'])){
-        
-        if($_GET['page'] == 'liste'){
+
+    if (isset($_GET['page'])) {
+
+        if ($_GET['page'] == 'liste') {
             require_once("controller/RecetteController.php");
             $depart = 0;
             if (isset($_GET['depart'])){
                 $depart = $_GET['depart'];
             }
+            // echo $depart;
+            include "template/header.php";
             afficher_liste($depart, 10);
+            include "template/footer.php";
         }
 
-        if($_GET['page'] == 'detailsRecette'){
+        if ($_GET['page'] == 'detailsRecette') {
             require_once("controller/RecetteController.php");
             detailRecette($_GET['recette']);
         }
 
-        if($_GET['page'] == 'mesrecettes'){
+        if ($_GET['page'] == 'mesrecettes') {
             require_once("controller/RecetteController.php");
+            include "template/header.php";
             if(isset($_GET['suppression'])){
                 supprimer($_GET['suppression']);
             }
             afficher_mes_recettes();
+            include "template/footer.php";
         }
 
-        if($_GET['page'] == 'ajouterRecette'){
-            if(isset($_GET['formulaire'])){
+        if ($_GET['page'] == 'ajouterRecette') {
+            if (isset($_GET['formulaire'])) {
                 include("traitement_ajout_recette.php");
-            }else{
+            } else {
                 include("ajout_recette.php");
             }
         }
 
-        if($_GET['page'] == 'modifierRecette'){
-            if(isset($_GET['formulaire'])){
+        if ($_GET['page'] == 'modifierRecette') {
+            if (isset($_GET['formulaire'])) {
                 include("traitement_modifier_recette.php");
-            }else{
+            } else {
                 include("modifier_recette.php");
             }
         }
 
-        if($_GET['page'] == 'listeAdmin'){
+        if ($_GET['page'] == 'listeAdmin') {
             require_once("controller/RecetteController.php");
             afficher_recettes_validation();
         }
 
-        if($_GET['page'] == 'modifier_edito'){
+        if ($_GET['page'] == 'modifier_edito') {
             include_once('template/formulaire_edito.php');
         }
 
-        if($_GET['page'] == 'connexion'){
-            if(isset($_POST['email'])){
+        if ($_GET['page'] == 'connexion') {
+            if (isset($_POST['email'])) {
                 include('controller/traitement_connexion.php');
                 traiter_connexion();
                 include ('template/Edito.php');
@@ -89,8 +95,8 @@
             include('template/page-connexion.php');
         }
 
-        if($_GET['page'] == 'inscription'){
-            if(isset($_GET['formulaire'])){
+        if ($_GET['page'] == 'inscription') {
+            if (isset($_GET['formulaire'])) {
                 require_once("controller/traitement_inscription.php");
                 traiter_inscription();
             }
@@ -101,11 +107,11 @@
             include_once('template/Filtre.php');
         }
 
-    }else{
+    } else {
         include 'template/Edito.php';
     }
-    
     ?>
 
 </body>
+
 </html>
