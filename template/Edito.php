@@ -25,7 +25,7 @@
                 if($_SESSION["type"] === 0){
                     echo"<div><a href=\"index.php?page=connexion\">Connexion</a></div>";
                 }else{
-                    echo "<div><a href=\"../controller/traitement_deconnexion.php\">Déconnexion</a></div>";
+                    echo "<div><a href=\"controller/traitement_deconnexion.php\">Déconnexion</a></div>";
                     if($_SESSION["type"] == '1' || $_SESSION["type"] == '2'){
                         echo "<div><a href=\"index.php?page=mesrecettes\">Mes recettes</a></div>";
                     }
@@ -47,7 +47,7 @@
         if($_SESSION["type"] === 0){
             echo"<div><a href=\"index.php?page=connexion\">Connexion</a></div>";
         }else{
-            echo "<div><a href=\"../controller/traitement_deconnexion.php\">Déconnexion</a></div>";
+            echo "<div><a href=\controller/traitement_deconnexion.php\">Déconnexion</a></div>";
             if($_SESSION["type"] == '1' || $_SESSION["type"] == '2'){
                 echo "<div><a href=\"index.php?page=mesrecettes\">Mes recettes</a></div>";
             }

@@ -1,5 +1,9 @@
 <?php 
-session_start();
+    if(!isset($_SESSION)){
+        session_start();
+    }
+    echo 'session :';
+    var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +53,14 @@ session_start();
         if($_GET['page'] == 'mesrecettes'){
             require_once("controller/RecetteController.php");
             afficher_mes_recettes();
+        }
+
+        if($_GET['page'] == 'ajouterRecette'){
+            if(isset($_GET['formulaire'])){
+                include("traitement_ajout_recette.php");
+            }else{
+                include("ajout_recette.php");
+            }
         }
 
         if($_GET['page'] == 'listeAdmin'){

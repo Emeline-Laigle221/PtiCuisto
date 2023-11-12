@@ -1,14 +1,5 @@
 <?php 
-
-
-    //normalement tu m'est pas le session_start et la variable de session mais la variable de session qui contient le numéro de l'utilisateur connecté qu'à du créer maxime lors de la connexion.
-    session_start();
-    
-
-    $_SESSION['pseudo'] = 21; //donc change cette variable par la bonne de maxime dans mon code 
-
-
-    function ajout_recette($post) {
+    function ajout_recette($post, $id) {
         include("connexion.php");
         $siteUnsplash = "unsplash.com"; // URL d'Unsplash
 
@@ -23,10 +14,11 @@
         if (strpos($post['lien_image'], $siteUnsplash) !== false) {
             echo "L'URL de l'image provient d'Unsplash.";
             $req = $bdd->prepare('INSERT INTO `RECETTE`(`REC_ID`, `TITRE`, `REC_RESUME`, `REC_IMAGE`, `DATE_CREATION`, `DATE_MODIFICATION`, `CONTENU`, `REC_VALIDATION`, `CATEGORIE_ID`, `UTI_ID`) VALUES(?,?,?,?,NOW(),NOW(),?,0,?,?);');
-            if ($req->execute(array($MaxIDRecette['MAX(REC_ID)+1'], strip_tags($post['titre_recette']),strip_tags($post['resume_de_la_recette']),strip_tags($post['lien_image']),strip_tags($post['contenu_de_la_recette']),$post['categorie'],$_SESSION['pseudo']))) {
+            if ($req->execute(array($MaxIDRecette['MAX(REC_ID)+1'], strip_tags($post['titre_recette']),strip_tags($post['resume_de_la_recette']),strip_tags($post['lien_image']),strip_tags($post['contenu_de_la_recette']),$post['categorie'],$id))) {
                 $rowCount = $req->rowCount();
                 if ($rowCount > 0) {
                     echo "L'insertion dans la table RECETTE s'est bien déroulée. Nombre de lignes affectées : " . $rowCount;
+                    echo '<a href="index.php?page=mesrecettes">Retourner à mes recettes</a>';
                 } else {
                     echo "L'insertion dans la table RECETTE n'a pas affecté de lignes.";
                 }
@@ -100,7 +92,7 @@
 
 
     else{
-        ajout_recette($_POST);
+        ajout_recette($_POST, $_SESSION['id']);
     }
 
     

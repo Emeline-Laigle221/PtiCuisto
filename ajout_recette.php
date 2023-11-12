@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,7 +6,7 @@
     <title>Page ajout d'une recette</title>
 </head>
 <body>
-    <form id="monFormulaire" action="traitement_ajout_recette.php" method="post" onsubmit="return validerFormulaire()" >
+    <form id="monFormulaire" action="index.php?page=ajouterRecette&formulaire=true" method="post" onsubmit="return validerFormulaire()" >
     <h3>Informations sur la recette :</h3>
         <label for="titre recette"> Titre de la recette</label>
         <input type="text" name="titre recette" id="titre_recette" required>
