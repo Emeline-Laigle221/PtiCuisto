@@ -1,4 +1,10 @@
 <?php
+
+    /**
+     * Fonction permettant de rechercher une recette dans la bas de données à partie de son identifiant.
+     * $num : l'identifiant de la rcette
+     * Retourne un tableau contenant les caractéristiques de la recette.
+     */
     function trouver_recette($num){
         require("connexion.php");
 
@@ -19,6 +25,11 @@
 
     }
 
+    /**
+     * Fonction listant les ingrédients d'une recette avec leur quantité et leur description.
+     * $id : l'identifiant de la recette.
+     * Retourne un tableau avec chaque ingrédient et ses propriétés.
+     */
     function lister_ingredients($id){
         require("connexion.php");
         $reponse = $bdd->query("SELECT quantite, ING_INTITULE as intitule, ING_DESCRIPTION as descritpion FROM CONTENIR join INGREDIENT using(INGREDIENT_ID) where REC_ID = ". $id ."; ");
@@ -59,6 +70,10 @@
         return $retour;
     }
 
+    /**
+     * Fonction pour rechercher dans la base de données, toutes les recettes sans restrictions.
+     * Retourne un tableau avec toutes les recettes et leur propriétés.
+     */
     function liste_totale(){
         require("connexion.php");
         $reponse = $bdd->query('SELECT titre, rec_resume, rec_image, cat_intitule as categorie, rec_id from RECETTE join CATEGORIE using(categorie_id) ORDER BY date_modification;');
@@ -104,18 +119,31 @@
         return $retour;
     }
 
+    /**
+     * Fonction pour valider une recette donnée.
+     * $num : l'identifiant de la recette à valider.
+     */
     function valider($num){
         require("connexion.php");
         $req = $bdd->prepare('UPDATE RECETTE set rec_validation = 1 where rec_id='. $num .';');
         $req->execute();
     }
 
+    /**
+     * Fonction pour interdire une recette donnée.
+     * $num : l'identifiant de la recette à interdire.
+     */
     function interdire($num){
         require("connexion.php");
         $req = $bdd->prepare('UPDATE RECETTE set rec_validation = -1 where rec_id='. $num .';');
         $req->execute();
     }
 
+    /**
+     * Fonction pour rechercher toutes les recettes d'un utilisateur donné.
+     * $id : l'identifiant de l'utilisateur
+     * Retourne un tableau contenant les recettes de l'utilisateur.
+     */
    function liste_proprietaire($id){
         require("connexion.php");
         $reponse = $bdd->query('SELECT titre, rec_resume, rec_image, cat_intitule as categorie, rec_id from RECETTE join CATEGORIE using(categorie_id) where uti_id = ' . $id . ' ORDER BY date_modification;');
@@ -135,6 +163,10 @@
         return $retour;
    }
 
+   /**
+    * Fonction pour supprimer une recette.
+    * $recID : l'identifiant de la recette a supprimer.
+    */
    function suppression(int $recID){
     include_once "connexion.php";
     if(isset($recID)){

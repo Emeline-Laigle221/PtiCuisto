@@ -1,6 +1,9 @@
 <?php
 include_once("manager/inscriptionManager.php");
 
+/**
+ * Fonction traitant le formulaire d'inscription.
+ */
 function traiter_inscription(){
     if (isset($_POST["nom"])) {
         if (isset($_POST["prenom"])) {

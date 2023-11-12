@@ -1,6 +1,10 @@
 <?php
     require_once('manager/RecetteManager.php'); //Récupération du modèle
 
+    /**
+     * Fonction affichant les caractéristiques d'une recette ainsi que ses ingrédients et leurs quantités.
+     * $num : Le numéro de la recette à afficher.
+     */
     function detailRecette($num){
         $recette = trouver_recette($num);
         echo '<h1>' . $recette['titre'] . '</h1>';
@@ -39,6 +43,10 @@
         }
     }
 
+    /**
+     * Fonction permettant d'afficher toutes les recettes en attente d'une validation (rec_validation = 0)
+     * Deux boutons s'affichent : valider pour valider la recette (rec_validation = 1) et interdire pour bannir la recette (rec_validation = -1)
+     */
     function afficher_recettes_validation(){
 
         if(isset($_GET['valider'])){
@@ -58,6 +66,9 @@
         echo '<table/>';
     }
 
+    /**
+     * Fonctions permettant d'afficher les trois dernières recette sur l'accueil.
+     */
     function afficher_recettes_accueil(){
         $recettes = liste();
         echo 
@@ -75,6 +86,10 @@
         </div>';
     }
 
+    /**
+     * Fonctions permettant d'afficher toutes les recettes crées par l'utilisateurs.
+     * Affiche également un bouton pour modifier la recette.
+     */
     function afficher_mes_recettes(){
         if($_SESSION['type'] == '2'){
             echo '<a href = "index.php?page=listeAdmin">Valider et interdire des recettes></a>';
@@ -100,11 +115,14 @@
         echo '<a href="index.php?page=ajouterRecette">Ajouter une recette</a>';
     }
 
-    //la fonction prend l'iD de la recette
+    /**
+     * Fonction permettant de supprimer une recette.
+     * $recID : l'identifiant de la recette à supprimer
+     * exemple appel de la fonction : supprimer(28);
+     */
     function supprimer(int $recID){
         suppression($recID);
     }
 
-    //exemple appel de la fonction 
-    //supression(28);
+    
 ?>

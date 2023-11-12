@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Fonction traitant le formulaire de connexion.
+ */
 function traiter_connexion(){
     if (isset($_POST["email"])) {
         if (isset($_POST["password"])) {
