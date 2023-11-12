@@ -3,7 +3,7 @@ PtiCuisto est un site web permettant de consulter et publier des recettes de cui
 
 ## Utilisation :page_facing_up:
 
-## Base de données
+## Base de données :ambulance:
 La base de données est hébergée sur un serveu mysql. Voici quelques remarques la concernant:
 Dans la table RECETTE, la colonne rec_validation est égale 1 si la recette est validé, -1 si elle est interdite ou 0 si elle est en attente de validation.
 Dans la table UTILISATEUR, la colonne statut est égale à 0 si l'utilisateur est actif ou -1 si son compte est suspendu.
@@ -20,3 +20,6 @@ Ce projet est réalisé par Emeline Laigle, Maxime Jobard, Cyrille Riguet et Vla
 
 ## Remerciement :beers:
 Merci à Christophe Vallot pour son cours et son aide, et Jean Guideau pour ses conseils en CSS.
+
+## Lien de notre site :closed_lock_with_key:
+https://dev-riguet222.users.info.unicaen.fr/etudiant/PtiCuisto/index.php (utiliser son id et son mot de passe unicaen pour y accéder)
