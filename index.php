@@ -64,6 +64,7 @@ if (!isset($_SESSION)) {
         if ($_GET['page'] == 'ajouterRecette') {
             if (isset($_GET['formulaire'])) {
                 include("traitement_ajout_recette.php");
+                include("template/Edito.php");
             } else {
                 include("ajout_recette.php");
             }
@@ -72,6 +73,7 @@ if (!isset($_SESSION)) {
         if ($_GET['page'] == 'modifierRecette') {
             if (isset($_GET['formulaire'])) {
                 include("traitement_modifier_recette.php");
+                include("template/Edito.php");
             } else {
                 include("modifier_recette.php");
             }

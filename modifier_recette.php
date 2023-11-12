@@ -8,7 +8,10 @@
     <title>Page modification d'une recette</title>
 </head>
 <body>
- <form id="monFormulaire" action="traitement_modifier_recette.php" method="post" >
+ <?php
+    echo '<form id="monFormulaire" action="index.php?page=modifierRecette&formulaire=true&recette=' . $_GET['recette'] . '" method="post" >';
+ ?>
+ <!--<form id="monFormulaire" action="index.php?page=modifierRecette&formulaire=true" method="post" >-->
     <h3>Informations sur la recette :</h3>
     <?php
     function trouver_recette($num){
@@ -30,7 +33,7 @@
 
     }
     
-    $reponse = trouver_recette(28);
+    $reponse = trouver_recette($_GET['recette']);
     ?>
         <label for="titre recette"> Titre de la recette</label>
         <input type="text" name="titre recette" id="titre_recette" value="<?php echo $reponse['titre']?>" required>
