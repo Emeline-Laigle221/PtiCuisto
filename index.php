@@ -36,10 +36,9 @@
         if($_GET['page'] == 'liste'){
             require_once("controller/RecetteController.php");
             $depart = 0;
-            if (isset($_GET['plus'])){
-                $depart = $_GET['plus'] + 10;
+            if (isset($_GET['depart'])){
+                $depart = $_GET['depart'];
             }
-            echo $depart;
             afficher_liste($depart, 10);
         }
 

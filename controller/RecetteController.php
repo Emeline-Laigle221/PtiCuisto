@@ -31,13 +31,18 @@
      */
     function afficher_liste($depart, $nb){
         $recettes = liste();
+
         echo '<table>';
         for($i = $depart; $i < $depart + $nb && $i < count($recettes); $i++){ 
             echo '<tr> <td> <a href="index.php?page=detailsRecette&recette=' . $recettes[$i]['rec_id'] . '">' . $recettes[$i]['titre'] . '</a><td/><td>' . $recettes[$i]['categorie'] . '<td/><td>' . $recettes[$i]['rec_resume']  . '<td/>' . '<td>' . '<a href="index.php?page=detailsRecette&recette=' . $recettes[$i]['rec_id'] . '"><img src=' . $recettes[$i]['rec_image'] . 'alt="image de la recette">' . '</img></a><td/><tr/>';
             echo '<br>';
         }
         echo '<table/>';
-        echo '<a href="index.php?page=liste&depart=' . ($depart + 10) . '">Plus</a>';
+
+        if($depart + $nb < count($recettes)){
+            echo '<a href="index.php?page=liste&depart=' . ($depart + 10) . '">Plus</a>';
+        }
+        
         if($depart !=0){
             echo '<a href="index.php?page=liste&depart=' . ($depart - 10) . '">Moins</a>';
         }
