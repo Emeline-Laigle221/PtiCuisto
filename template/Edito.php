@@ -74,7 +74,7 @@
                 </div> 
                 <?php
                 if($_SESSION["type"] == 2){
-                    echo "<button class=\"btn-edito\"><a href=>Modifier l'édito</a></button>";
+                    echo "<button class=\"btn-edito\"><a href=index.php?page=modifier_edito>Modifier l'édito</a></button>";
                 }
                 ?>
             </div>

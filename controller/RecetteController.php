@@ -76,27 +76,33 @@
     }
 
     function afficher_mes_recettes(){
-        $recettes = liste_proprietaire($_SESSION['id']);
-        echo '<table>';
-        for($i = 0; $i < count($recettes); $i++){ 
-            echo '<tr> <td> <a href="index.php?page=detailsRecette&recette=' . $recettes[$i]['rec_id'] . '">' . $recettes[$i]['titre'] . '</a><td/><td>' . $recettes[$i]['categorie'] . '<td/><td>' . $recettes[$i]['rec_resume']  . '<td/>' . '<td>' . '<a href="index.php?page=detailsRecette&recette=' . $recettes[$i]['rec_id'] . '"><img src=' . $recettes[$i]['rec_image'] . 'alt="image de la recette">' . '</img></a><td/><td> <a href="index.php?page=modifierRecette&recette=' . $recettes[$i]['rec_id'] . '">Modifier la recette</a><tr/>';
+        if($_SESSION['type'] == '2'){
+            echo '<a href = "index.php?page=listeAdmin">Valider et interdire des recettes></a>';
             echo '<br>';
+            $recettes = liste_totale();
+            echo '<table>';
+            for($i = 0; $i < count($recettes); $i++){ 
+                echo '<tr> <td> <a href="index.php?page=detailsRecette&recette=' . $recettes[$i]['rec_id'] . '">' . $recettes[$i]['titre'] . '</a><td/><td>' . $recettes[$i]['categorie'] . '<td/><td>' . $recettes[$i]['rec_resume']  . '<td/>' . '<td>' . '<a href="index.php?page=detailsRecette&recette=' . $recettes[$i]['rec_id'] . '"><img src=' . $recettes[$i]['rec_image'] . 'alt="image de la recette">' . '</img></a><td/><td> <a href="index.php?page=modifierRecette&recette=' . $recettes[$i]['rec_id'] . '">Modifier la recette</a><td/><td> <a href="index.php?page=mesrecettes&suppression=' . $recettes[$i]['rec_id'] . '">Supprimer la recette</a><td/><tr/>';
+                echo '<br>';
+            }
+                echo '<table/>';
+        }else{
+            $recettes = liste_proprietaire($_SESSION['id']);
+            echo '<table>';
+            for($i = 0; $i < count($recettes); $i++){ 
+                echo '<tr> <td> <a href="index.php?page=detailsRecette&recette=' . $recettes[$i]['rec_id'] . '">' . $recettes[$i]['titre'] . '</a><td/><td>' . $recettes[$i]['categorie'] . '<td/><td>' . $recettes[$i]['rec_resume']  . '<td/>' . '<td>' . '<a href="index.php?page=detailsRecette&recette=' . $recettes[$i]['rec_id'] . '"><img src=' . $recettes[$i]['rec_image'] . 'alt="image de la recette">' . '</img></a><td/><td> <a href="index.php?page=modifierRecette&recette=' . $recettes[$i]['rec_id'] . '">Modifier la recette</a><tr/>';
+                echo '<br>';
+            }
+                echo '<table/>';
         }
-        echo '<table/>';
+
+        
         echo '<a href="index.php?page=ajouterRecette">Ajouter une recette</a>';
     }
 
     //la fonction prend l'iD de la recette
-    function supression(int $recID){
-        include_once "connexion.php";
-        if(isset($recID)){
-            $req3 = $bdd->prepare('DELETE FROM `CONTENIR` WHERE REC_ID=?'); //supprime les lignes dans contenir qui lie des ingrédients à la recette
-            $req3->execute(array($recID)); 
-            $req4 = $bdd->prepare('DELETE FROM `RECETTE` WHERE REC_ID=?');//supprime la recette
-            $req4->execute(array($recID)); 
-            $req5 = $bdd->prepare('DELETE FROM `INGREDIENT` WHERE INGREDIENT_ID NOT IN ( SELECT INGREDIENT_ID FROM `CONTENIR`)');//supprime les ingrédients qui ne sont plus lier à aucune recette
-            $req5->execute(array()); 
-        }
+    function supprimer(int $recID){
+        suppression($recID);
     }
 
     //exemple appel de la fonction 

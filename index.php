@@ -50,6 +50,9 @@
 
         if($_GET['page'] == 'mesrecettes'){
             require_once("controller/RecetteController.php");
+            if(isset($_GET['suppression'])){
+                supprimer($_GET['suppression']);
+            }
             afficher_mes_recettes();
         }
 
@@ -82,6 +85,7 @@
             if(isset($_POST['email'])){
                 include('controller/traitement_connexion.php');
                 traiter_connexion();
+                include ('template/Edito.php');
             }
             include('template/page-connexion.php');
         }

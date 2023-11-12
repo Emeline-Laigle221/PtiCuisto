@@ -12,9 +12,8 @@ function traiter_connexion(){
             if (compteIsSet($email, $password)) {
                 $_SESSION["id"] = getUserId($email, $password);
                 $_SESSION["type"] = getUserType($email, $password);
-                var_dump($_SESSION);
             } else {
-                header("Location: template/page-connexion.php?error=true");
+                //header("Location: template/page-connexion.php?error=true");
                 exit;
             }
         }

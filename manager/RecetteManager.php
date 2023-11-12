@@ -59,6 +59,25 @@
         return $retour;
     }
 
+    function liste_totale(){
+        require("connexion.php");
+        $reponse = $bdd->query('SELECT titre, rec_resume, rec_image, cat_intitule as categorie, rec_id from RECETTE join CATEGORIE using(categorie_id) ORDER BY date_modification;');
+
+        $retour = array();
+        $i = 0;
+
+        while ($donnees = $reponse->fetch()){ 
+            $retour[$i]['titre'] = $donnees['titre'];
+            $retour[$i]['rec_resume'] = $donnees['rec_resume'];
+            $retour[$i]['rec_image'] = $donnees['rec_image'];
+            $retour[$i]['categorie'] = $donnees['categorie'];
+            $retour[$i]['rec_id'] = $donnees['rec_id'];
+            $i++;
+        }
+
+        return $retour;
+    }
+
     /**
      * Fonction retournant toutes les recettes qui n'ont pas encore été validé par un administrateur
      * Avec les propriétés : titre, résumé, image et intitulé de la catégorie
@@ -115,4 +134,16 @@
 
         return $retour;
    }
+
+   function suppression(int $recID){
+    include_once "connexion.php";
+    if(isset($recID)){
+        $req3 = $bdd->prepare('DELETE FROM `CONTENIR` WHERE REC_ID=?'); //supprime les lignes dans contenir qui lie des ingrédients à la recette
+        $req3->execute(array($recID)); 
+        $req4 = $bdd->prepare('DELETE FROM `RECETTE` WHERE REC_ID=?');//supprime la recette
+        $req4->execute(array($recID)); 
+        $req5 = $bdd->prepare('DELETE FROM `INGREDIENT` WHERE INGREDIENT_ID NOT IN ( SELECT INGREDIENT_ID FROM `CONTENIR`)');//supprime les ingrédients qui ne sont plus lier à aucune recette
+        $req5->execute(array()); 
+    }
+}
 ?>
