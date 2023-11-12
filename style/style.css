@@ -379,6 +379,8 @@ footer{
 
 .ajout{
     margin-left: 2vw;
+    max-height: 56px;
+    width: 100%;
 }
 
 /* ----------------------------- Style Connexion -------------------------- */
@@ -418,7 +420,7 @@ footer{
     font-size: 24px;
     margin-top: 10px;
     display: block;
-    height: fit-content;
+    height: auto;
     min-width: 150px;
     width: 15vw;
     cursor: pointer;
