@@ -1,6 +1,5 @@
 <?php
     require_once 'connexion.php';
-    session_start();
 
     if (!isset($_SESSION['pseudo'])) {
         $_SESSION['pseudo'] = '';
@@ -18,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <script src="../js/filtre.js" defer></script>
+    <script src="js/filtre.js" defer></script>
     <title>PtiCuisto</title>
 </head>
 <body>

@@ -2,10 +2,10 @@
 </head>
 
 <header>
-    <a href="../index.php"><img src="../img/Logo.png" alt="Logo"></a>
+    <a href="index.php"><img src="img/Logo.png" alt="Logo"></a>
     <nav>
         <div id="menuPC">
-            <div><a href="../index.php">Accueil</a></div>
+            <div><a href="index.php">Accueil</a></div>
             <div><a href="recettes.php">Nos Recettes</a></div>
             <div><a href="Filtre.php">Filtres</a></div>
             <?php

@@ -94,6 +94,10 @@
             include_once('template/page-inscription.php');
         }
 
+        if($_GET['page'] == 'filtre'){
+            include_once('template/Filtre.php');
+        }
+
     }else{
         include 'template/Edito.php';
     }

@@ -20,7 +20,7 @@
             <div id="menuPC">
                 <div><a href="index.php">Accueil</a></div>
                 <div><a href="index.php?page=liste">Nos Recettes</a></div>
-                <div><a href="template/Filtre.php">Filtres</a></div>
+                <div><a href="index.php?page=filtre">Filtres</a></div>
                 <?php
                 if($_SESSION["type"] === 0){
                     echo"<div><a href=\"index.php?page=connexion\">Connexion</a></div>";
@@ -42,7 +42,7 @@
     <div id="menuPortable">
         <div><a href="index.php">Accueil</a></div>
         <div><a href="index.php?page=liste">Nos Recettes</a></div>
-        <div><a href="template/Filtre.php">Filtres</a></div>
+        <div><a href="index.php?page=filtre">Filtres</a></div>
         <?php
         if($_SESSION["type"] === 0){
             echo"<div><a href=\"index.php?page=connexion\">Connexion</a></div>";
@@ -72,7 +72,6 @@
                     afficher_edito();
                 ?>
                 </div> 
-                <p class="texte-edito">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sapiente mollitia id incidunt ratione neque laborum optio, eaque debitis. Atque eum ratione, dolores similique earum asperiores in necessitatibus rem illum cum.</p>
                 <?php
                 if($_SESSION["type"] == 2){
                     echo "<button class=\"btn-edito\"><a href=>Modifier l'édito</a></button>";
